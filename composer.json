@@ -1,0 +1,33 @@
+{
+  "name": "bronos/php-sql",
+  "description": "PHP SQL database layer",
+  "keywords": [
+    "db",
+    "sql",
+    "database"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Oleg Bronzov",
+      "email": "oleg.bronzov@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "ext-pdo": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "8.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "BronOS\\PhpSqlSchema\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "BronOS\\PhpSqlSchema\\Tests\\": "tests/"
+    }
+  }
+}
