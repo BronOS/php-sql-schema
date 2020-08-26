@@ -10,7 +10,7 @@ class FloatColumnTest extends TestCase
 {
     public function test__construct()
     {
-        $int = new FloatColumn(
+        $column = new FloatColumn(
             'id',
             4,
             3,
@@ -21,14 +21,14 @@ class FloatColumnTest extends TestCase
             "Float ID"
         );
 
-        $this->assertEquals('FLOAT', $int->getType());
-        $this->assertEquals('id', $int->getName());
-        $this->assertEquals(4, $int->getPrecision());
-        $this->assertEquals(3, $int->getScale());
-        $this->assertTrue($int->isUnsigned());
-        $this->assertFalse($int->isNullable());
-        $this->assertEquals('10.5', $int->getDefault());
-        $this->assertFalse($int->isZerofill());
-        $this->assertEquals('Float ID', $int->getComment());
+        $this->assertEquals('FLOAT', $column->getType());
+        $this->assertEquals('id', $column->getName());
+        $this->assertEquals(4, $column->getPrecision());
+        $this->assertEquals(3, $column->getScale());
+        $this->assertTrue($column->isUnsigned());
+        $this->assertFalse($column->isNullable());
+        $this->assertEquals('10.5', $column->getDefault());
+        $this->assertFalse($column->isZerofill());
+        $this->assertEquals('Float ID', $column->getComment());
     }
 }

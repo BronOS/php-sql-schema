@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Sql
+ * Php Sql Schema
  *
  * MIT License
  *
@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * @package   bronos\php-sql
+ * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
@@ -37,29 +37,29 @@ namespace BronOS\PhpSqlSchema\Column\Attribute;
 /**
  * Character set SQL column attribute trait.
  *
- * @package   bronos\php-sql
+ * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
 trait CharsetColumnAttributeTrait
 {
-    private string $charset;
+    private ?string $charset = null;
 
     /**
      * CharsetSQLColumnAttributeTrait constructor.
      *
-     * @param string $charset
+     * @param string|null $charset
      */
-    public function __construct(string $charset)
+    public function __construct(?string $charset = null)
     {
         $this->charset = $charset;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCharset(): string
+    public function getCharset(): ?string
     {
         return $this->charset;
     }

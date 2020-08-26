@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Sql
+ * Php Sql Schema
  *
  * NOTICE OF LICENSE
  *
@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * @package   bronos\php-sql
+ * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
@@ -41,7 +41,7 @@ use BronOS\PhpSqlSchema\Exception\SQLColumnDeclarationException;
 /**
  * Abstract integer SQL column representation.
  *
- * @package   bronos\php-sql
+ * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
@@ -57,14 +57,14 @@ abstract class AbstractIntColumn extends AbstractNumericColumn
     }
 
     /**
-     * @param string   $name
-     * @param int      $size
-     * @param bool     $isUnsigned
-     * @param bool     $isAutoincrement
-     * @param bool     $isNullable
-     * @param int|null $default
-     * @param bool     $isZerofill
-     * @param string   $comment
+     * @param string      $name
+     * @param int         $size
+     * @param bool        $isUnsigned
+     * @param bool        $isAutoincrement
+     * @param bool        $isNullable
+     * @param int|null    $default
+     * @param bool        $isZerofill
+     * @param string|null $comment
      *
      * @throws SQLColumnDeclarationException
      */
@@ -76,7 +76,7 @@ abstract class AbstractIntColumn extends AbstractNumericColumn
         bool $isNullable = false,
         ?int $default = null,
         bool $isZerofill = false,
-        string $comment = ''
+        ?string $comment = null
     ) {
         parent::__construct(
             $name,

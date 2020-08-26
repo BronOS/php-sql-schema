@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Sql
+ * Php Sql Schema
  *
  * MIT License
  *
@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * @package   bronos\php-sql
+ * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
@@ -37,7 +37,7 @@ namespace BronOS\PhpSqlSchema\Column;
 /**
  * Abstract SQL column.
  *
- * @package   bronos\php-sql
+ * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
@@ -47,7 +47,7 @@ abstract class AbstractColumn implements ColumnInterface
     private string $name;
     private bool $nullable = false;
     private ?string $default = null;
-    private string $comment = '';
+    private ?string $comment = null;
 
     /**
      * AbstractSQLColumn constructor.
@@ -55,13 +55,13 @@ abstract class AbstractColumn implements ColumnInterface
      * @param string      $name
      * @param bool        $isNullable
      * @param string|null $default
-     * @param string      $comment
+     * @param string|null $comment
      */
     public function __construct(
         string $name,
         bool $isNullable = false,
         ?string $default = null,
-        string $comment = ''
+        ?string $comment = null
     ) {
         $this->name = $name;
         $this->nullable = $isNullable;
@@ -94,9 +94,9 @@ abstract class AbstractColumn implements ColumnInterface
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getComment(): string
+    public function getComment(): ?string
     {
         return $this->comment;
     }

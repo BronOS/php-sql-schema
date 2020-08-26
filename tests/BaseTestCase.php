@@ -56,7 +56,7 @@ class BaseTestCase extends TestCase
 
     public function testMeta(): void
     {
-        $int = new IntColumn('test', 11);
+        $column = new IntColumn('test', 11);
 
         $sth = $this->pdo->prepare('SHOW COLUMNS FROM oleg');
         $sth->execute();

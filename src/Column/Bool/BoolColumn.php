@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Sql
+ * Php Sql Schema
  *
  * MIT License
  *
@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * @package   bronos\php-sql
+ * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
@@ -49,7 +49,7 @@ use BronOS\PhpSqlSchema\Column\AbstractColumn;
  * SELECT true, false, TRUE, FALSE, True, False;
  * -- 1 0 1 0 1 0
  *
- * @package   bronos\php-sql
+ * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
@@ -59,16 +59,16 @@ class BoolColumn extends AbstractColumn implements BoolColumnInterface
     /**
      * AbstractSQLColumn constructor.
      *
-     * @param string    $name
-     * @param bool      $isNullable
-     * @param bool|null $default
-     * @param string    $comment
+     * @param string      $name
+     * @param bool        $isNullable
+     * @param bool|null   $default
+     * @param string|null $comment
      */
     public function __construct(
         string $name,
         bool $isNullable = false,
         ?bool $default = null,
-        string $comment = ''
+        ?string $comment = null
     ) {
         if (!is_null($default)) {
             $default = $default ? '1' : '0';

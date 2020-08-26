@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Sql
+ * Php Sql Schema
  *
  * NOTICE OF LICENSE
  *
@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * @package   bronos\php-sql
+ * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
@@ -59,7 +59,7 @@ namespace BronOS\PhpSqlSchema\Column\Numeric;
  * For maximum portability, code requiring storage of approximate numeric data values
  * should use FLOAT or DOUBLE PRECISION with no specification of precision or number of digits.
  *
- * @package   bronos\php-sql
+ * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT

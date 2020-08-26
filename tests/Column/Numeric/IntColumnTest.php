@@ -12,7 +12,7 @@ class IntColumnTest extends TestCase
 
     public function test__construct()
     {
-        $int = new IntColumn(
+        $column = new IntColumn(
             'id',
             11,
             true,
@@ -23,15 +23,15 @@ class IntColumnTest extends TestCase
             "Primary ID"
         );
 
-        $this->assertEquals('INT', $int->getType());
-        $this->assertEquals('id', $int->getName());
-        $this->assertEquals(11, $int->getSize());
-        $this->assertTrue($int->isUnsigned());
-        $this->assertTrue($int->isAutoincrement());
-        $this->assertFalse($int->isNullable());
-        $this->assertNull($int->getDefault());
-        $this->assertFalse($int->isZerofill());
-        $this->assertEquals('Primary ID', $int->getComment());
+        $this->assertEquals('INT', $column->getType());
+        $this->assertEquals('id', $column->getName());
+        $this->assertEquals(11, $column->getSize());
+        $this->assertTrue($column->isUnsigned());
+        $this->assertTrue($column->isAutoincrement());
+        $this->assertFalse($column->isNullable());
+        $this->assertNull($column->getDefault());
+        $this->assertFalse($column->isZerofill());
+        $this->assertEquals('Primary ID', $column->getComment());
     }
 
     public function testOutOfRangeMin()

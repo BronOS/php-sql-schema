@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Sql
+ * Php Sql Schema
  *
  * MIT License
  *
@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * @package   bronos\php-sql
+ * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
@@ -37,29 +37,29 @@ namespace BronOS\PhpSqlSchema\Column\Attribute;
 /**
  * Collate SQL column attribute trait.
  *
- * @package   bronos\php-sql
+ * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
 trait CollateColumnAttributeTrait
 {
-    private string $collate;
+    private ?string $collate = null;
 
     /**
      * CollateSQLColumnAttributeTrait constructor.
      *
-     * @param string $collate
+     * @param string|null $collate
      */
-    public function __construct(string $collate)
+    public function __construct(?string $collate = null)
     {
         $this->collate = $collate;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getCollate(): string
+    public function getCollate(): ?string
     {
         return $this->collate;
     }

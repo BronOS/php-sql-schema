@@ -11,7 +11,7 @@ class MediumIntColumnTest extends TestCase
 
     public function test__construct()
     {
-        $int = new MediumIntColumn(
+        $column = new MediumIntColumn(
             'id',
             11,
             false,
@@ -22,14 +22,14 @@ class MediumIntColumnTest extends TestCase
             "Medium ID"
         );
 
-        $this->assertEquals('MEDIUMINT', $int->getType());
-        $this->assertEquals('id', $int->getName());
-        $this->assertEquals(11, $int->getSize());
-        $this->assertFalse($int->isUnsigned());
-        $this->assertFalse($int->isAutoincrement());
-        $this->assertFalse($int->isNullable());
-        $this->assertEquals(150, $int->getDefault());
-        $this->assertTrue($int->isZerofill());
-        $this->assertEquals('Medium ID', $int->getComment());
+        $this->assertEquals('MEDIUMINT', $column->getType());
+        $this->assertEquals('id', $column->getName());
+        $this->assertEquals(11, $column->getSize());
+        $this->assertFalse($column->isUnsigned());
+        $this->assertFalse($column->isAutoincrement());
+        $this->assertFalse($column->isNullable());
+        $this->assertEquals(150, $column->getDefault());
+        $this->assertTrue($column->isZerofill());
+        $this->assertEquals('Medium ID', $column->getComment());
     }
 }

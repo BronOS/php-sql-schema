@@ -10,7 +10,7 @@ class BitColumnTest extends TestCase
 {
     public function test__construct()
     {
-        $int = new BitColumn(
+        $column = new BitColumn(
             'test',
             2,
             true,
@@ -18,11 +18,11 @@ class BitColumnTest extends TestCase
             "Bit test"
         );
 
-        $this->assertEquals('BIT', $int->getType());
-        $this->assertEquals('test', $int->getName());
-        $this->assertEquals(2, $int->getSize());
-        $this->assertTrue($int->isNullable());
-        $this->assertNull($int->getDefault());
-        $this->assertEquals('Bit test', $int->getComment());
+        $this->assertEquals('BIT', $column->getType());
+        $this->assertEquals('test', $column->getName());
+        $this->assertEquals(2, $column->getSize());
+        $this->assertTrue($column->isNullable());
+        $this->assertNull($column->getDefault());
+        $this->assertEquals('Bit test', $column->getComment());
     }
 }

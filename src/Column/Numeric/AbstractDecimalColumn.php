@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Sql
+ * Php Sql Schema
  *
  * NOTICE OF LICENSE
  *
@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * @package   bronos\php-sql
+ * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
@@ -39,7 +39,7 @@ use BronOS\PhpSqlSchema\Column\Attribute\DecimalSizeColumnAttributeTrait;
 /**
  * Abstract decimal SQL column representation.
  *
- * @package   bronos\php-sql
+ * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
@@ -50,6 +50,18 @@ abstract class AbstractDecimalColumn extends AbstractNumericColumn
         DecimalSizeColumnAttributeTrait::__construct as __decimalSizeConstruct;
     }
 
+    /**
+     * AbstractDecimalColumn constructor.
+     *
+     * @param string      $name
+     * @param int         $precision
+     * @param int         $scale
+     * @param bool        $isUnsigned
+     * @param bool        $isNullable
+     * @param float|null  $default
+     * @param bool        $isZerofill
+     * @param string|null $comment
+     */
     public function __construct(
         string $name,
         int $precision = 10,
@@ -58,7 +70,7 @@ abstract class AbstractDecimalColumn extends AbstractNumericColumn
         bool $isNullable = false,
         ?float $default = null,
         bool $isZerofill = false,
-        string $comment = ''
+        ?string $comment = null
     ) {
         parent::__construct(
             $name,

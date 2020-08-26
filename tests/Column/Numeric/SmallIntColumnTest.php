@@ -11,7 +11,7 @@ class SmallIntColumnTest extends TestCase
 
     public function test__construct()
     {
-        $int = new SmallIntColumn(
+        $column = new SmallIntColumn(
             'id',
             11,
             true,
@@ -22,14 +22,14 @@ class SmallIntColumnTest extends TestCase
             "Small ID"
         );
 
-        $this->assertEquals('SMALLINT', $int->getType());
-        $this->assertEquals('id', $int->getName());
-        $this->assertEquals(11, $int->getSize());
-        $this->assertTrue($int->isUnsigned());
-        $this->assertTrue($int->isAutoincrement());
-        $this->assertFalse($int->isNullable());
-        $this->assertEquals(15, $int->getDefault());
-        $this->assertFalse($int->isZerofill());
-        $this->assertEquals('Small ID', $int->getComment());
+        $this->assertEquals('SMALLINT', $column->getType());
+        $this->assertEquals('id', $column->getName());
+        $this->assertEquals(11, $column->getSize());
+        $this->assertTrue($column->isUnsigned());
+        $this->assertTrue($column->isAutoincrement());
+        $this->assertFalse($column->isNullable());
+        $this->assertEquals(15, $column->getDefault());
+        $this->assertFalse($column->isZerofill());
+        $this->assertEquals('Small ID', $column->getComment());
     }
 }

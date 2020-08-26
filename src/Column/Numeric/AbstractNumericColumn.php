@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Sql
+ * Php Sql Schema
  *
  * NOTICE OF LICENSE
  *
@@ -23,7 +23,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  *
- * @package   bronos\php-sql
+ * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
@@ -41,7 +41,7 @@ use BronOS\PhpSqlSchema\Column\Attribute\ZerofillColumnAttributeTrait;
 /**
  * Abstract numeric SQL column representation.
  *
- * @package   bronos\php-sql
+ * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
@@ -64,7 +64,7 @@ abstract class AbstractNumericColumn extends AbstractColumn
      * @param bool        $isNullable
      * @param string|null $default
      * @param bool        $isZerofill
-     * @param string      $comment
+     * @param string|null $comment
      */
     public function __construct(
         string $name,
@@ -72,7 +72,7 @@ abstract class AbstractNumericColumn extends AbstractColumn
         bool $isNullable = false,
         ?string $default = null,
         bool $isZerofill = false,
-        string $comment = ''
+        ?string $comment = null
     ) {
         parent::__construct(
             $name,

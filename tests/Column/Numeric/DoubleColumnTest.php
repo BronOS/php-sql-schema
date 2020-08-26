@@ -10,7 +10,7 @@ class DoubleColumnTest extends TestCase
 {
     public function test__construct()
     {
-        $int = new DoubleColumn(
+        $column = new DoubleColumn(
             'id',
             4,
             3,
@@ -21,14 +21,14 @@ class DoubleColumnTest extends TestCase
             "Double ID"
         );
 
-        $this->assertEquals('DOUBLE', $int->getType());
-        $this->assertEquals('id', $int->getName());
-        $this->assertEquals(4, $int->getPrecision());
-        $this->assertEquals(3, $int->getScale());
-        $this->assertTrue($int->isUnsigned());
-        $this->assertFalse($int->isNullable());
-        $this->assertEquals('10.5', $int->getDefault());
-        $this->assertFalse($int->isZerofill());
-        $this->assertEquals('Double ID', $int->getComment());
+        $this->assertEquals('DOUBLE', $column->getType());
+        $this->assertEquals('id', $column->getName());
+        $this->assertEquals(4, $column->getPrecision());
+        $this->assertEquals(3, $column->getScale());
+        $this->assertTrue($column->isUnsigned());
+        $this->assertFalse($column->isNullable());
+        $this->assertEquals('10.5', $column->getDefault());
+        $this->assertFalse($column->isZerofill());
+        $this->assertEquals('Double ID', $column->getComment());
     }
 }

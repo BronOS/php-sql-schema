@@ -11,7 +11,7 @@ class BigIntColumnTest extends TestCase
 
     public function test__construct()
     {
-        $int = new BigIntColumn(
+        $column = new BigIntColumn(
             'id',
             11,
             false,
@@ -22,14 +22,14 @@ class BigIntColumnTest extends TestCase
             "Big ID"
         );
 
-        $this->assertEquals('BIGINT', $int->getType());
-        $this->assertEquals('id', $int->getName());
-        $this->assertEquals(11, $int->getSize());
-        $this->assertFalse($int->isUnsigned());
-        $this->assertFalse($int->isAutoincrement());
-        $this->assertFalse($int->isNullable());
-        $this->assertEquals(9223372036854775807, $int->getDefault());
-        $this->assertTrue($int->isZerofill());
-        $this->assertEquals('Big ID', $int->getComment());
+        $this->assertEquals('BIGINT', $column->getType());
+        $this->assertEquals('id', $column->getName());
+        $this->assertEquals(11, $column->getSize());
+        $this->assertFalse($column->isUnsigned());
+        $this->assertFalse($column->isAutoincrement());
+        $this->assertFalse($column->isNullable());
+        $this->assertEquals(9223372036854775807, $column->getDefault());
+        $this->assertTrue($column->isZerofill());
+        $this->assertEquals('Big ID', $column->getComment());
     }
 }

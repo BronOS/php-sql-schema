@@ -10,17 +10,17 @@ class BoolColumnTest extends TestCase
 {
     public function test__construct()
     {
-        $int = new BoolColumn(
+        $column = new BoolColumn(
             'test',
             true,
             false,
             'Test bool'
         );
 
-        $this->assertEquals('BOOL', $int->getType());
-        $this->assertEquals('test', $int->getName());
-        $this->assertTrue($int->isNullable());
-        $this->assertEquals('0', $int->getDefault());
-        $this->assertEquals('Test bool', $int->getComment());
+        $this->assertEquals('BOOL', $column->getType());
+        $this->assertEquals('test', $column->getName());
+        $this->assertTrue($column->isNullable());
+        $this->assertEquals('0', $column->getDefault());
+        $this->assertEquals('Test bool', $column->getComment());
     }
 }
