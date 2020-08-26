@@ -37,7 +37,7 @@ namespace BronOS\PhpSqlSchema\Column\Numeric;
 use BronOS\PhpSqlSchema\Column\AbstractColumn;
 use BronOS\PhpSqlSchema\Column\Attribute\UnsignedColumnAttributeTrait;
 use BronOS\PhpSqlSchema\Column\Attribute\ZerofillColumnAttributeTrait;
-use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
+use BronOS\PhpSqlSchema\Exception\ColumnDeclarationException;
 
 /**
  * Abstract numeric SQL column representation.
@@ -67,7 +67,7 @@ abstract class AbstractNumericColumn extends AbstractColumn
      * @param bool        $isZerofill
      * @param string|null $comment
      *
-     * @throws PhpSqlSchemaColumnDeclarationException
+     * @throws ColumnDeclarationException
      */
     public function __construct(
         string $name,

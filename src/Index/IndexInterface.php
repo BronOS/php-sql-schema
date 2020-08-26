@@ -31,17 +31,44 @@
 
 declare(strict_types=1);
 
-namespace BronOS\PhpSqlSchema\Exception;
+namespace BronOS\PhpSqlSchema\Index;
 
 
 /**
- * Php Sql Schema column declaration exception.
+ * PHP representation of SQL table key/index.
  *
  * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-class PhpSqlSchemaColumnDeclarationException extends PhpSqlSchemaException
+interface IndexInterface
 {
+    /**
+     * Returns string representation of SQL key type.
+     *
+     * @return string
+     */
+    public function getType(): string;
+
+    /**
+     * Returns name of index.
+     *
+     * @return string
+     */
+    public function getName(): string;
+
+    /**
+     * Returns list of field names.
+     *
+     * @return string[]
+     */
+    public function getFields(): array;
+
+    /**
+     * Returns key block size if set and null otherwise.
+     *
+     * @return int|null
+     */
+    public function getSize(): ?int;
 }

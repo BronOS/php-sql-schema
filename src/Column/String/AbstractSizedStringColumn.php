@@ -35,7 +35,7 @@ namespace BronOS\PhpSqlSchema\Column\String;
 
 
 use BronOS\PhpSqlSchema\Column\Attribute\SizeColumnAttributeTrait;
-use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
+use BronOS\PhpSqlSchema\Exception\ColumnDeclarationException;
 
 /**
  * Abstract sized string SQL column representation.
@@ -62,7 +62,7 @@ abstract class AbstractSizedStringColumn extends AbstractStringColumn
      * @param string|null $collate
      * @param string|null $comment
      *
-     * @throws PhpSqlSchemaColumnDeclarationException
+     * @throws ColumnDeclarationException
      */
     public function __construct(
         string $name,

@@ -34,7 +34,7 @@ declare(strict_types=1);
 namespace BronOS\PhpSqlSchema\Column\Attribute;
 
 
-use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
+use BronOS\PhpSqlSchema\Exception\ColumnDeclarationException;
 
 /**
  * Options SQL column attribute trait.
@@ -56,12 +56,12 @@ trait OptionsColumnAttributeTrait
      *
      * @param string ...$options
      *
-     * @throws PhpSqlSchemaColumnDeclarationException
+     * @throws ColumnDeclarationException
      */
     public function __construct(string ...$options)
     {
         if (count($options) == 0) {
-            throw new PhpSqlSchemaColumnDeclarationException('Empty options list');
+            throw new ColumnDeclarationException('Empty options list');
         }
 
         $this->options = $options;

@@ -35,7 +35,7 @@ namespace BronOS\PhpSqlSchema\Column\String;
 
 
 use BronOS\PhpSqlSchema\Column\Attribute\OptionsColumnAttributeTrait;
-use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
+use BronOS\PhpSqlSchema\Exception\ColumnDeclarationException;
 
 /**
  * Abstract ENUM SQL column representation.
@@ -62,7 +62,7 @@ abstract class AbstractEnumColumn extends AbstractStringColumn
      * @param string|null $collate
      * @param string|null $comment
      *
-     * @throws PhpSqlSchemaColumnDeclarationException
+     * @throws ColumnDeclarationException
      */
     public function __construct(
         string $name,
@@ -85,7 +85,7 @@ abstract class AbstractEnumColumn extends AbstractStringColumn
         try {
             $this->__optionsConstruct(...$options);
         } catch (\Throwable $e) {
-            throw new PhpSqlSchemaColumnDeclarationException("Incorrect options list", $e->getCode(), $e);
+            throw new ColumnDeclarationException("Incorrect options list", $e->getCode(), $e);
         }
     }
 }

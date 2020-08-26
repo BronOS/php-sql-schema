@@ -35,19 +35,14 @@ namespace BronOS\PhpSqlSchema\Index;
 
 
 /**
- * Php Sql Schema index representation.
+ * PHP representation of SQL table primary key.
  *
  * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-abstract class SQLIndex
+interface PrimaryKeyInterface extends IndexInterface
 {
-    private string $type;
-    private ?string $name = null;
-    /**
-     * @var string[] List of fields for group index
-     */
-    private array $together = [];
+    public const SQL_TYPE = 'PRIMARY KEY';
 }

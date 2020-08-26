@@ -36,7 +36,7 @@ namespace BronOS\PhpSqlSchema\Column\DateTime;
 
 use BronOS\PhpSqlSchema\Column\AbstractColumn;
 use BronOS\PhpSqlSchema\Column\Attribute\DefaultTimestampColumnAttributeTrait;
-use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
+use BronOS\PhpSqlSchema\Exception\ColumnDeclarationException;
 
 /**
  * Abstract date/time/year SQL column representation.
@@ -61,7 +61,7 @@ abstract class AbstractDateColumn extends AbstractColumn implements BaseDateColu
      * @param string|null $default
      * @param string|null $comment
      *
-     * @throws PhpSqlSchemaColumnDeclarationException
+     * @throws ColumnDeclarationException
      */
     public function __construct(
         string $name,

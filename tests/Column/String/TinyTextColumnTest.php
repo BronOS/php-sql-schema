@@ -4,7 +4,7 @@ namespace BronOS\PhpSqlSchema\Tests\Column\String;
 
 
 use BronOS\PhpSqlSchema\Column\String\TinyTextColumn;
-use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
+use BronOS\PhpSqlSchema\Exception\ColumnDeclarationException;
 use PHPUnit\Framework\TestCase;
 
 class TinyTextColumnTest extends TestCase
@@ -34,7 +34,7 @@ class TinyTextColumnTest extends TestCase
 
     public function testInvalidNullableState()
     {
-        $this->expectException(PhpSqlSchemaColumnDeclarationException::class);
+        $this->expectException(ColumnDeclarationException::class);
 
         $column = new TinyTextColumn(
             'test',

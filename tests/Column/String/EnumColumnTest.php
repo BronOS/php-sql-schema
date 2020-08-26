@@ -4,7 +4,7 @@ namespace BronOS\PhpSqlSchema\Tests\Column\String;
 
 
 use BronOS\PhpSqlSchema\Column\String\EnumColumn;
-use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
+use BronOS\PhpSqlSchema\Exception\ColumnDeclarationException;
 use PHPUnit\Framework\TestCase;
 
 class EnumColumnTest extends TestCase
@@ -34,7 +34,7 @@ class EnumColumnTest extends TestCase
 
     public function testEmptyOptions()
     {
-        $this->expectException(PhpSqlSchemaColumnDeclarationException::class);
+        $this->expectException(ColumnDeclarationException::class);
 
         $column = new EnumColumn(
             'test',

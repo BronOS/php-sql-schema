@@ -34,7 +34,7 @@ declare(strict_types=1);
 namespace BronOS\PhpSqlSchema\Column\DateTime;
 
 
-use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
+use BronOS\PhpSqlSchema\Exception\ColumnDeclarationException;
 
 /**
  * TIMESTAMP SQL column representation.
@@ -61,7 +61,7 @@ class TimestampColumn extends AbstractDateTimeColumn implements TimestampColumnI
      * @param string|null $default
      * @param string|null $comment
      *
-     * @throws PhpSqlSchemaColumnDeclarationException
+     * @throws ColumnDeclarationException
      */
     public function __construct(
         string $name,

@@ -3,7 +3,7 @@
 /**
  * Php Sql Schema
  *
- * NOTICE OF LICENSE
+ * MIT License
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,57 +31,18 @@
 
 declare(strict_types=1);
 
-namespace BronOS\PhpSqlSchema\Column\String;
+namespace BronOS\PhpSqlSchema\Index;
 
-
-use BronOS\PhpSqlSchema\Column\Attribute\BinaryColumnAttributeTrait;
-use BronOS\PhpSqlSchema\Exception\ColumnDeclarationException;
 
 /**
- * Abstract text SQL column representation.
+ * PHP representation of SQL table unique key.
  *
  * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-abstract class AbstractTextColumn extends AbstractBlobColumn
+interface UniqueKeyInterface extends IndexInterface
 {
-    use BinaryColumnAttributeTrait {
-        BinaryColumnAttributeTrait::__construct as __binaryConstruct;
-    }
-
-    /**
-     * IntColumn constructor.
-     *
-     * @param string      $name
-     * @param bool        $isBinary
-     * @param bool        $isNullable
-     * @param bool        $isDefaultNull
-     * @param string|null $charset
-     * @param string|null $collate
-     * @param string|null $comment
-     *
-     * @throws ColumnDeclarationException
-     */
-    public function __construct(
-        string $name,
-        bool $isBinary = false,
-        bool $isNullable = false,
-        bool $isDefaultNull = false,
-        ?string $charset = null,
-        ?string $collate = null,
-        ?string $comment = null
-    ) {
-        parent::__construct(
-            $name,
-            $isNullable,
-            $isDefaultNull,
-            $charset,
-            $collate,
-            $comment
-        );
-
-        $this->__binaryConstruct($isBinary);
-    }
+    public const SQL_TYPE = 'UNIQUE KEY';
 }

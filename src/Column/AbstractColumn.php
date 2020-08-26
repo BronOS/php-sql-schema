@@ -34,7 +34,7 @@ declare(strict_types=1);
 namespace BronOS\PhpSqlSchema\Column;
 
 
-use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
+use BronOS\PhpSqlSchema\Exception\ColumnDeclarationException;
 
 /**
  * Abstract SQL column.
@@ -59,7 +59,7 @@ abstract class AbstractColumn implements ColumnInterface
      * @param string|null $default
      * @param string|null $comment
      *
-     * @throws PhpSqlSchemaColumnDeclarationException
+     * @throws ColumnDeclarationException
      */
     public function __construct(
         string $name,
@@ -77,12 +77,12 @@ abstract class AbstractColumn implements ColumnInterface
     }
 
     /**
-     * @throws PhpSqlSchemaColumnDeclarationException
+     * @throws ColumnDeclarationException
      */
     private function validate(): void
     {
         if (!$this->isNullable() && $this->isDefaultNull()) {
-            throw new PhpSqlSchemaColumnDeclarationException('Invalid nullable state');
+            throw new ColumnDeclarationException('Invalid nullable state');
         }
     }
 

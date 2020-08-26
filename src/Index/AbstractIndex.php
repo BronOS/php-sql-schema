@@ -3,7 +3,7 @@
 /**
  * Php Sql Schema
  *
- * NOTICE OF LICENSE
+ * MIT License
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,57 +31,64 @@
 
 declare(strict_types=1);
 
-namespace BronOS\PhpSqlSchema\Column\String;
+namespace BronOS\PhpSqlSchema\Index;
 
-
-use BronOS\PhpSqlSchema\Column\Attribute\BinaryColumnAttributeTrait;
-use BronOS\PhpSqlSchema\Exception\ColumnDeclarationException;
 
 /**
- * Abstract text SQL column representation.
+ * PHP representation of SQL table key/index.
  *
  * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-abstract class AbstractTextColumn extends AbstractBlobColumn
+abstract class AbstractIndex implements IndexInterface
 {
-    use BinaryColumnAttributeTrait {
-        BinaryColumnAttributeTrait::__construct as __binaryConstruct;
+    private array $fields;
+    private string $name;
+    private ?int $size = null;
+
+    /**
+     * AbstractIndex constructor.
+     *
+     * @param array    $fields
+     * @param string   $name
+     * @param int|null $size
+     */
+    public function __construct(array $fields, string $name, ?int $size)
+    {
+        $this->fields = $fields;
+        $this->name = $name;
+        $this->size = $size;
     }
 
     /**
-     * IntColumn constructor.
+     * Returns name of index.
      *
-     * @param string      $name
-     * @param bool        $isBinary
-     * @param bool        $isNullable
-     * @param bool        $isDefaultNull
-     * @param string|null $charset
-     * @param string|null $collate
-     * @param string|null $comment
-     *
-     * @throws ColumnDeclarationException
+     * @return string
      */
-    public function __construct(
-        string $name,
-        bool $isBinary = false,
-        bool $isNullable = false,
-        bool $isDefaultNull = false,
-        ?string $charset = null,
-        ?string $collate = null,
-        ?string $comment = null
-    ) {
-        parent::__construct(
-            $name,
-            $isNullable,
-            $isDefaultNull,
-            $charset,
-            $collate,
-            $comment
-        );
+    public function getName(): string
+    {
+        return $this->name;
+    }
 
-        $this->__binaryConstruct($isBinary);
+    /**
+     * Returns list of field names.
+     *
+     * @return string[]
+     */
+    public function getFields(): array
+    {
+        return $this->fields;
+    }
+
+    /**
+     * Returns key block size if set and null otherwise.
+     *
+     * @return int|null
+     */
+    public function getSize(): ?int
+    {
+        return $this->size;
     }
 }

@@ -35,7 +35,7 @@ namespace BronOS\PhpSqlSchema\Column\Numeric;
 
 
 use BronOS\PhpSqlSchema\Column\Attribute\DecimalSizeColumnAttributeTrait;
-use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
+use BronOS\PhpSqlSchema\Exception\ColumnDeclarationException;
 
 /**
  * Abstract decimal SQL column representation.
@@ -63,7 +63,7 @@ abstract class AbstractDecimalColumn extends AbstractNumericColumn
      * @param bool        $isZerofill
      * @param string|null $comment
      *
-     * @throws PhpSqlSchemaColumnDeclarationException
+     * @throws ColumnDeclarationException
      */
     public function __construct(
         string $name,

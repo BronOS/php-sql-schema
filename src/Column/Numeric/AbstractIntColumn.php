@@ -36,7 +36,7 @@ namespace BronOS\PhpSqlSchema\Column\Numeric;
 
 use BronOS\PhpSqlSchema\Column\Attribute\AutoincrementColumnAttributeTrait;
 use BronOS\PhpSqlSchema\Column\Attribute\SizeColumnAttributeTrait;
-use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
+use BronOS\PhpSqlSchema\Exception\ColumnDeclarationException;
 
 /**
  * Abstract integer SQL column representation.
@@ -66,7 +66,7 @@ abstract class AbstractIntColumn extends AbstractNumericColumn
      * @param bool        $isZerofill
      * @param string|null $comment
      *
-     * @throws PhpSqlSchemaColumnDeclarationException
+     * @throws ColumnDeclarationException
      */
     public function __construct(
         string $name,
