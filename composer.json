@@ -1,9 +1,11 @@
 {
-  "name": "bronos/php-sql",
-  "description": "PHP SQL database layer",
+  "name": "bronos/php-sql-schema",
+  "description": "PHP SQL schema",
   "keywords": [
+    "php",
     "db",
     "sql",
+    "schema",
     "database"
   ],
   "license": "MIT",
