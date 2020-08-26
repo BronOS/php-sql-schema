@@ -34,6 +34,10 @@ declare(strict_types=1);
 namespace BronOS\PhpSqlSchema\Index;
 
 
+use BronOS\PhpSqlSchema\Exception\DuplicateIndexFieldException;
+use BronOS\PhpSqlSchema\Exception\EmptyIndexFieldListException;
+use BronOS\PhpSqlSchema\Exception\InvalidIndexFieldTypeException;
+
 /**
  * PHP representation of SQL table key/index.
  *
@@ -44,22 +48,72 @@ namespace BronOS\PhpSqlSchema\Index;
  */
 abstract class AbstractIndex implements IndexInterface
 {
-    private array $fields;
+    private array $fields = [];
     private string $name;
     private ?int $size = null;
 
     /**
      * AbstractIndex constructor.
      *
-     * @param array    $fields
-     * @param string   $name
-     * @param int|null $size
+     * @param array       $fields
+     * @param string|null $name
+     * @param int|null    $size
+     *
+     * @throws DuplicateIndexFieldException
+     * @throws EmptyIndexFieldListException
+     * @throws InvalidIndexFieldTypeException
      */
-    public function __construct(array $fields, string $name, ?int $size)
+    public function __construct(array $fields, ?string $name = null, ?int $size = null)
     {
-        $this->fields = $fields;
-        $this->name = $name;
+        try {
+            $this->setFields(...$fields);
+        } catch (DuplicateIndexFieldException | EmptyIndexFieldListException $e) {
+            throw $e;
+        } catch (\Throwable $e) {
+            throw new InvalidIndexFieldTypeException('Invalid index field type');
+        }
+
+        $this->name = $this->generateName($fields, $name);
         $this->size = $size;
+    }
+
+    /**
+     * @param string ...$fields
+     *
+     * @throws DuplicateIndexFieldException
+     * @throws EmptyIndexFieldListException
+     */
+    private function setFields(string ...$fields): void
+    {
+        if (count($fields) == 0) {
+            throw new EmptyIndexFieldListException('Empty index field list');
+        }
+
+        foreach ($fields as $field) {
+            if (in_array($field, $this->fields)) {
+                throw new DuplicateIndexFieldException('Duplicate index field');
+            }
+
+            $this->fields[] = $field;
+        }
+    }
+
+    /**
+     * @param array       $fields
+     * @param string|null $name
+     *
+     * @return string
+     */
+    private function generateName(array $fields, ?string $name): string
+    {
+        if (!is_null($name)) {
+            return $name;
+        }
+
+        return strtolower(str_replace(' ', '_', $this->getType()))
+            . '_'
+            . implode('_', $fields)
+            . '_idx';
     }
 
     /**
