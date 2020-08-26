@@ -17,7 +17,7 @@ class SmallIntColumnTest extends TestCase
             true,
             true,
             false,
-            15,
+            '15',
             false,
             "Small ID"
         );
@@ -28,7 +28,7 @@ class SmallIntColumnTest extends TestCase
         $this->assertTrue($column->isUnsigned());
         $this->assertTrue($column->isAutoincrement());
         $this->assertFalse($column->isNullable());
-        $this->assertEquals(15, $column->getDefault());
+        $this->assertEquals('15', $column->getDefault());
         $this->assertFalse($column->isZerofill());
         $this->assertEquals('Small ID', $column->getComment());
     }

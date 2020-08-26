@@ -44,6 +44,8 @@ namespace BronOS\PhpSqlSchema\Column;
  */
 interface ColumnInterface
 {
+    public const NULL_KEYWORD = 'NULL';
+
     /**
      * Returns string representation of the SQL column type.
      *
@@ -71,6 +73,13 @@ interface ColumnInterface
      * @return string|null
      */
     public function getDefault(): ?string;
+
+    /**
+     * Check whether default value marked as NULL.
+     *
+     * @return bool
+     */
+    public function isDefaultNull(): bool;
 
     /**
      * Returns column's comment/description.

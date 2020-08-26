@@ -35,13 +35,13 @@ namespace BronOS\PhpSqlSchema\Exception;
 
 
 /**
- * Php Sql Schema column declaration exception.
+ * Php Sql Schema exception.
  *
  * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-class SQLColumnDeclarationException extends SQLException
+class PhpSqlSchemaException extends \Exception
 {
 }

@@ -14,6 +14,7 @@ class TextColumnTest extends TestCase
             'test',
             true,
             true,
+            false,
             'cp1251',
             'cp1251_ukrainian_ci',
             'Test text'
@@ -23,6 +24,8 @@ class TextColumnTest extends TestCase
         $this->assertEquals('test', $column->getName());
         $this->assertTrue($column->isBinary());
         $this->assertTrue($column->isNullable());
+        $this->assertFalse($column->isDefaultNull());
+        $this->assertNull($column->getDefault());
         $this->assertEquals('cp1251', $column->getCharset());
         $this->assertEquals('cp1251_ukrainian_ci', $column->getCollate());
         $this->assertEquals('Test text', $column->getComment());

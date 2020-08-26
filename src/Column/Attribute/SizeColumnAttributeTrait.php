@@ -34,7 +34,7 @@ declare(strict_types=1);
 namespace BronOS\PhpSqlSchema\Column\Attribute;
 
 
-use BronOS\PhpSqlSchema\Exception\SQLColumnDeclarationException;
+use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
 
 /**
  * Size SQL column attribute trait.
@@ -53,7 +53,7 @@ trait SizeColumnAttributeTrait
      *
      * @param int $size
      *
-     * @throws SQLColumnDeclarationException
+     * @throws PhpSqlSchemaColumnDeclarationException
      */
     public function __construct(int $size)
     {
@@ -72,12 +72,12 @@ trait SizeColumnAttributeTrait
     /**
      * @param int $size
      *
-     * @throws SQLColumnDeclarationException
+     * @throws PhpSqlSchemaColumnDeclarationException
      */
     private function validateSize(int $size): void
     {
         if ($size < 1 || $size > 255) {
-            throw new SQLColumnDeclarationException(
+            throw new PhpSqlSchemaColumnDeclarationException(
                 sprintf(
                     'Invalid INT size %s. Size value must be between 1 and 255.',
                     $size

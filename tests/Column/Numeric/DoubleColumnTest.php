@@ -16,7 +16,7 @@ class DoubleColumnTest extends TestCase
             3,
             true,
             false,
-            10.5,
+            '10.5',
             false,
             "Double ID"
         );

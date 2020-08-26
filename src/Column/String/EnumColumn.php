@@ -31,59 +31,31 @@
 
 declare(strict_types=1);
 
-namespace BronOS\PhpSqlSchema\Column\Numeric;
+namespace BronOS\PhpSqlSchema\Column\String;
 
 
-use BronOS\PhpSqlSchema\Column\Attribute\DecimalSizeColumnAttributeTrait;
 use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
 
 /**
- * Abstract decimal SQL column representation.
+ * ENUM SQL column representation.
+ *
+ * An ENUM is a string object with a value chosen from a list of permitted values
+ * that are enumerated explicitly in the column specification at table creation time.
  *
  * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-abstract class AbstractDecimalColumn extends AbstractNumericColumn
+class EnumColumn extends AbstractEnumColumn implements EnumColumnInterface
 {
-    use DecimalSizeColumnAttributeTrait {
-        DecimalSizeColumnAttributeTrait::__construct as __decimalSizeConstruct;
-    }
-
     /**
-     * AbstractDecimalColumn constructor.
+     * Returns string representation of the SQL column type.
      *
-     * @param string      $name
-     * @param int         $precision
-     * @param int         $scale
-     * @param bool        $isUnsigned
-     * @param bool        $isNullable
-     * @param string|null $default
-     * @param bool        $isZerofill
-     * @param string|null $comment
-     *
-     * @throws PhpSqlSchemaColumnDeclarationException
+     * @return string
      */
-    public function __construct(
-        string $name,
-        int $precision = 10,
-        int $scale = 2,
-        bool $isUnsigned = false,
-        bool $isNullable = false,
-        ?string $default = null,
-        bool $isZerofill = false,
-        ?string $comment = null
-    ) {
-        parent::__construct(
-            $name,
-            $isUnsigned,
-            $isNullable,
-            $default,
-            $isZerofill,
-            $comment
-        );
-
-        $this->__decimalSizeConstruct($precision, $scale);
+    public function getType(): string
+    {
+        return self::SQL_TYPE;
     }
 }

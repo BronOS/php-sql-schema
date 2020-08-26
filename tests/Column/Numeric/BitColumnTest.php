@@ -22,6 +22,7 @@ class BitColumnTest extends TestCase
         $this->assertEquals('test', $column->getName());
         $this->assertEquals(2, $column->getSize());
         $this->assertTrue($column->isNullable());
+        $this->assertFalse($column->isDefaultNull());
         $this->assertNull($column->getDefault());
         $this->assertEquals('Bit test', $column->getComment());
     }

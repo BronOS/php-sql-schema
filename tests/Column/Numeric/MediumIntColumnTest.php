@@ -17,7 +17,7 @@ class MediumIntColumnTest extends TestCase
             false,
             false,
             false,
-            150,
+            '150',
             true,
             "Medium ID"
         );
@@ -28,7 +28,7 @@ class MediumIntColumnTest extends TestCase
         $this->assertFalse($column->isUnsigned());
         $this->assertFalse($column->isAutoincrement());
         $this->assertFalse($column->isNullable());
-        $this->assertEquals(150, $column->getDefault());
+        $this->assertEquals('150', $column->getDefault());
         $this->assertTrue($column->isZerofill());
         $this->assertEquals('Medium ID', $column->getComment());
     }

@@ -17,7 +17,7 @@ class BigIntColumnTest extends TestCase
             false,
             false,
             false,
-            9223372036854775807,
+            '9223372036854775807',
             true,
             "Big ID"
         );
@@ -28,7 +28,7 @@ class BigIntColumnTest extends TestCase
         $this->assertFalse($column->isUnsigned());
         $this->assertFalse($column->isAutoincrement());
         $this->assertFalse($column->isNullable());
-        $this->assertEquals(9223372036854775807, $column->getDefault());
+        $this->assertEquals('9223372036854775807', $column->getDefault());
         $this->assertTrue($column->isZerofill());
         $this->assertEquals('Big ID', $column->getComment());
     }

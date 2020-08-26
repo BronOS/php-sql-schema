@@ -13,6 +13,7 @@ class TinyBlobColumnTest extends TestCase
         $column = new TinyBlobColumn(
             'test',
             true,
+            false,
             'cp1251',
             'cp1251_ukrainian_ci',
             'Test tinyblob'
@@ -21,6 +22,8 @@ class TinyBlobColumnTest extends TestCase
         $this->assertEquals('TINYBLOB', $column->getType());
         $this->assertEquals('test', $column->getName());
         $this->assertTrue($column->isNullable());
+        $this->assertFalse($column->isDefaultNull());
+        $this->assertNull($column->getDefault());
         $this->assertEquals('cp1251', $column->getCharset());
         $this->assertEquals('cp1251_ukrainian_ci', $column->getCollate());
         $this->assertEquals('Test tinyblob', $column->getComment());

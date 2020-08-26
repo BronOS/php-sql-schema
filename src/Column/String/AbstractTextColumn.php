@@ -35,6 +35,7 @@ namespace BronOS\PhpSqlSchema\Column\String;
 
 
 use BronOS\PhpSqlSchema\Column\Attribute\BinaryColumnAttributeTrait;
+use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
 
 /**
  * Abstract text SQL column representation.
@@ -56,14 +57,18 @@ abstract class AbstractTextColumn extends AbstractBlobColumn
      * @param string      $name
      * @param bool        $isBinary
      * @param bool        $isNullable
+     * @param bool        $isDefaultNull
      * @param string|null $charset
      * @param string|null $collate
      * @param string|null $comment
+     *
+     * @throws PhpSqlSchemaColumnDeclarationException
      */
     public function __construct(
         string $name,
         bool $isBinary = false,
         bool $isNullable = false,
+        bool $isDefaultNull = false,
         ?string $charset = null,
         ?string $collate = null,
         ?string $comment = null
@@ -71,6 +76,7 @@ abstract class AbstractTextColumn extends AbstractBlobColumn
         parent::__construct(
             $name,
             $isNullable,
+            $isDefaultNull,
             $charset,
             $collate,
             $comment

@@ -34,6 +34,8 @@ declare(strict_types=1);
 namespace BronOS\PhpSqlSchema\Column;
 
 
+use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
+
 /**
  * Abstract SQL column.
  *
@@ -56,6 +58,8 @@ abstract class AbstractColumn implements ColumnInterface
      * @param bool        $isNullable
      * @param string|null $default
      * @param string|null $comment
+     *
+     * @throws PhpSqlSchemaColumnDeclarationException
      */
     public function __construct(
         string $name,
@@ -65,8 +69,36 @@ abstract class AbstractColumn implements ColumnInterface
     ) {
         $this->name = $name;
         $this->nullable = $isNullable;
-        $this->default = $default;
         $this->comment = $comment;
+
+        $this->setDefault($default);
+
+        $this->validate();
+    }
+
+    /**
+     * @throws PhpSqlSchemaColumnDeclarationException
+     */
+    private function validate(): void
+    {
+        if (!$this->isNullable() && $this->isDefaultNull()) {
+            throw new PhpSqlSchemaColumnDeclarationException('Invalid nullable state');
+        }
+    }
+
+    /**
+     * @param string|null $default
+     */
+    private function setDefault(?string $default): void
+    {
+        if (!is_null($default)) {
+            $defaultUpper = strtoupper($default);
+            if ($defaultUpper === self::NULL_KEYWORD) {
+                $default = $defaultUpper;
+            }
+        }
+
+        $this->default = $default;
     }
 
     /**
@@ -99,5 +131,15 @@ abstract class AbstractColumn implements ColumnInterface
     public function getComment(): ?string
     {
         return $this->comment;
+    }
+
+    /**
+     * Check whether default value marked as NULL.
+     *
+     * @return bool
+     */
+    public function isDefaultNull(): bool
+    {
+        return $this->default === self::NULL_KEYWORD;
     }
 }

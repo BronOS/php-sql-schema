@@ -36,7 +36,7 @@ namespace BronOS\PhpSqlSchema\Column\Numeric;
 
 use BronOS\PhpSqlSchema\Column\AbstractColumn;
 use BronOS\PhpSqlSchema\Column\Attribute\SizeColumnAttributeTrait;
-use BronOS\PhpSqlSchema\Exception\SQLColumnDeclarationException;
+use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
 
 /**
  * BIT SQL column representation.
@@ -73,7 +73,7 @@ class BitColumn extends AbstractColumn implements BitColumnInterface
      * @param string|null $default
      * @param string|null $comment
      *
-     * @throws SQLColumnDeclarationException
+     * @throws PhpSqlSchemaColumnDeclarationException
      */
     public function __construct(
         string $name,
@@ -85,7 +85,7 @@ class BitColumn extends AbstractColumn implements BitColumnInterface
         parent::__construct(
             $name,
             $isNullable,
-            is_null($default) ? null : (string)$default,
+            $default,
             $comment
         );
 

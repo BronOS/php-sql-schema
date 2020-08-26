@@ -4,7 +4,7 @@ namespace BronOS\PhpSqlSchema\Tests\Column\Numeric;
 
 
 use BronOS\PhpSqlSchema\Column\Numeric\IntColumn;
-use BronOS\PhpSqlSchema\Exception\SQLColumnDeclarationException;
+use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
 use PHPUnit\Framework\TestCase;
 
 class IntColumnTest extends TestCase
@@ -29,6 +29,7 @@ class IntColumnTest extends TestCase
         $this->assertTrue($column->isUnsigned());
         $this->assertTrue($column->isAutoincrement());
         $this->assertFalse($column->isNullable());
+        $this->assertFalse($column->isDefaultNull());
         $this->assertNull($column->getDefault());
         $this->assertFalse($column->isZerofill());
         $this->assertEquals('Primary ID', $column->getComment());
@@ -36,13 +37,13 @@ class IntColumnTest extends TestCase
 
     public function testOutOfRangeMin()
     {
-        $this->expectException(SQLColumnDeclarationException::class);
+        $this->expectException(PhpSqlSchemaColumnDeclarationException::class);
         new IntColumn('id', 0);
     }
 
     public function testOutOfRangeMax()
     {
-        $this->expectException(SQLColumnDeclarationException::class);
+        $this->expectException(PhpSqlSchemaColumnDeclarationException::class);
         new IntColumn('id', 256);
     }
 }

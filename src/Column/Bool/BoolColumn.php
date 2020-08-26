@@ -57,32 +57,6 @@ use BronOS\PhpSqlSchema\Column\AbstractColumn;
 class BoolColumn extends AbstractColumn implements BoolColumnInterface
 {
     /**
-     * AbstractSQLColumn constructor.
-     *
-     * @param string      $name
-     * @param bool        $isNullable
-     * @param bool|null   $default
-     * @param string|null $comment
-     */
-    public function __construct(
-        string $name,
-        bool $isNullable = false,
-        ?bool $default = null,
-        ?string $comment = null
-    ) {
-        if (!is_null($default)) {
-            $default = $default ? '1' : '0';
-        }
-
-        parent::__construct(
-            $name,
-            $isNullable,
-            $default,
-            $comment
-        );
-    }
-
-    /**
      * Returns string representation of the SQL column type.
      *
      * @return string

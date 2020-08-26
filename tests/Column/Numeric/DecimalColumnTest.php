@@ -16,7 +16,7 @@ class DecimalColumnTest extends TestCase
             3,
             true,
             false,
-            10.5,
+            '10.5',
             false,
             "Decimal ID"
         );

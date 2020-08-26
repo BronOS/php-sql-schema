@@ -34,6 +34,8 @@ declare(strict_types=1);
 namespace BronOS\PhpSqlSchema\Column\String;
 
 
+use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
+
 /**
  * Abstract BLOB SQL column representation.
  *
@@ -49,13 +51,17 @@ abstract class AbstractBlobColumn extends AbstractStringColumn
      *
      * @param string      $name
      * @param bool        $isNullable
+     * @param bool        $isDefaultNull
      * @param string|null $charset
      * @param string|null $collate
      * @param string|null $comment
+     *
+     * @throws PhpSqlSchemaColumnDeclarationException
      */
     public function __construct(
         string $name,
         bool $isNullable = false,
+        bool $isDefaultNull = false,
         ?string $charset = null,
         ?string $collate = null,
         ?string $comment = null
@@ -63,7 +69,7 @@ abstract class AbstractBlobColumn extends AbstractStringColumn
         parent::__construct(
             $name,
             $isNullable,
-            null,
+            $isDefaultNull ? self::NULL_KEYWORD : null,
             $charset,
             $collate,
             $comment

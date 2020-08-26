@@ -3,7 +3,7 @@
 /**
  * Php Sql Schema
  *
- * NOTICE OF LICENSE
+ * MIT License
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,59 +31,47 @@
 
 declare(strict_types=1);
 
-namespace BronOS\PhpSqlSchema\Column\Numeric;
+namespace BronOS\PhpSqlSchema\Column\Attribute;
 
 
-use BronOS\PhpSqlSchema\Column\Attribute\DecimalSizeColumnAttributeTrait;
 use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
 
 /**
- * Abstract decimal SQL column representation.
+ * Options SQL column attribute trait.
  *
  * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-abstract class AbstractDecimalColumn extends AbstractNumericColumn
+trait OptionsColumnAttributeTrait
 {
-    use DecimalSizeColumnAttributeTrait {
-        DecimalSizeColumnAttributeTrait::__construct as __decimalSizeConstruct;
-    }
+    /**
+     * @var string[]
+     */
+    private array $options;
 
     /**
-     * AbstractDecimalColumn constructor.
+     * OptionsColumnAttributeTrait constructor.
      *
-     * @param string      $name
-     * @param int         $precision
-     * @param int         $scale
-     * @param bool        $isUnsigned
-     * @param bool        $isNullable
-     * @param string|null $default
-     * @param bool        $isZerofill
-     * @param string|null $comment
+     * @param string ...$options
      *
      * @throws PhpSqlSchemaColumnDeclarationException
      */
-    public function __construct(
-        string $name,
-        int $precision = 10,
-        int $scale = 2,
-        bool $isUnsigned = false,
-        bool $isNullable = false,
-        ?string $default = null,
-        bool $isZerofill = false,
-        ?string $comment = null
-    ) {
-        parent::__construct(
-            $name,
-            $isUnsigned,
-            $isNullable,
-            $default,
-            $isZerofill,
-            $comment
-        );
+    public function __construct(string ...$options)
+    {
+        if (count($options) == 0) {
+            throw new PhpSqlSchemaColumnDeclarationException('Empty options list');
+        }
 
-        $this->__decimalSizeConstruct($precision, $scale);
+        $this->options = $options;
+    }
+
+    /**
+     * @return string[]
+     */
+    public function getOptions(): array
+    {
+        return $this->options;
     }
 }

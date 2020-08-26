@@ -28,6 +28,7 @@ class TinyIntColumnTest extends TestCase
         $this->assertTrue($column->isUnsigned());
         $this->assertTrue($column->isAutoincrement());
         $this->assertFalse($column->isNullable());
+        $this->assertFalse($column->isDefaultNull());
         $this->assertNull($column->getDefault());
         $this->assertFalse($column->isZerofill());
         $this->assertEquals('Tinyint ID', $column->getComment());

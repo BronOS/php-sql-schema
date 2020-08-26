@@ -31,59 +31,21 @@
 
 declare(strict_types=1);
 
-namespace BronOS\PhpSqlSchema\Column\Numeric;
+namespace BronOS\PhpSqlSchema\Column\String;
 
-
-use BronOS\PhpSqlSchema\Column\Attribute\DecimalSizeColumnAttributeTrait;
-use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
 
 /**
- * Abstract decimal SQL column representation.
+ * SET SQL column representation.
+ *
+ * A string object that can have 0 or more values, chosen from a list of possible values.
+ * You can list up to 64 values in a SET list
  *
  * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-abstract class AbstractDecimalColumn extends AbstractNumericColumn
+interface SetColumnInterface extends BaseEnumColumnInterface
 {
-    use DecimalSizeColumnAttributeTrait {
-        DecimalSizeColumnAttributeTrait::__construct as __decimalSizeConstruct;
-    }
-
-    /**
-     * AbstractDecimalColumn constructor.
-     *
-     * @param string      $name
-     * @param int         $precision
-     * @param int         $scale
-     * @param bool        $isUnsigned
-     * @param bool        $isNullable
-     * @param string|null $default
-     * @param bool        $isZerofill
-     * @param string|null $comment
-     *
-     * @throws PhpSqlSchemaColumnDeclarationException
-     */
-    public function __construct(
-        string $name,
-        int $precision = 10,
-        int $scale = 2,
-        bool $isUnsigned = false,
-        bool $isNullable = false,
-        ?string $default = null,
-        bool $isZerofill = false,
-        ?string $comment = null
-    ) {
-        parent::__construct(
-            $name,
-            $isUnsigned,
-            $isNullable,
-            $default,
-            $isZerofill,
-            $comment
-        );
-
-        $this->__decimalSizeConstruct($precision, $scale);
-    }
+    public const SQL_TYPE = 'SET';
 }

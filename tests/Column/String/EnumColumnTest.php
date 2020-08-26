@@ -3,47 +3,47 @@
 namespace BronOS\PhpSqlSchema\Tests\Column\String;
 
 
-use BronOS\PhpSqlSchema\Column\String\TinyTextColumn;
+use BronOS\PhpSqlSchema\Column\String\EnumColumn;
 use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
 use PHPUnit\Framework\TestCase;
 
-class TinyTextColumnTest extends TestCase
+class EnumColumnTest extends TestCase
 {
     public function test__construct()
     {
-        $column = new TinyTextColumn(
+        $column = new EnumColumn(
             'test',
+            ['a', 'b', 'c'],
             true,
-            true,
-            true,
+            EnumColumn::NULL_KEYWORD,
             'cp1251',
             'cp1251_ukrainian_ci',
-            'Test tinytext'
+            'Test enum'
         );
 
-        $this->assertEquals('TINYTEXT', $column->getType());
+        $this->assertEquals('ENUM', $column->getType());
         $this->assertEquals('test', $column->getName());
-        $this->assertTrue($column->isBinary());
+        $this->assertEquals(['a', 'b', 'c'], $column->getOptions());
         $this->assertTrue($column->isNullable());
         $this->assertTrue($column->isDefaultNull());
         $this->assertEquals($column::NULL_KEYWORD, $column->getDefault());
         $this->assertEquals('cp1251', $column->getCharset());
         $this->assertEquals('cp1251_ukrainian_ci', $column->getCollate());
-        $this->assertEquals('Test tinytext', $column->getComment());
+        $this->assertEquals('Test enum', $column->getComment());
     }
 
-    public function testInvalidNullableState()
+    public function testEmptyOptions()
     {
         $this->expectException(PhpSqlSchemaColumnDeclarationException::class);
 
-        $column = new TinyTextColumn(
+        $column = new EnumColumn(
             'test',
+            [],
             true,
-            false,
-            true,
+            'b',
             'cp1251',
             'cp1251_ukrainian_ci',
-            'Test tinytext'
+            'Test enum'
         );
     }
 }

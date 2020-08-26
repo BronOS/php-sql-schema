@@ -37,6 +37,7 @@ namespace BronOS\PhpSqlSchema\Column\String;
 use BronOS\PhpSqlSchema\Column\AbstractColumn;
 use BronOS\PhpSqlSchema\Column\Attribute\CharsetColumnAttributeTrait;
 use BronOS\PhpSqlSchema\Column\Attribute\CollateColumnAttributeTrait;
+use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
 
 /**
  * Abstract string SQL column representation.
@@ -65,6 +66,8 @@ abstract class AbstractStringColumn extends AbstractColumn
      * @param string|null $charset
      * @param string|null $collate
      * @param string|null $comment
+     *
+     * @throws PhpSqlSchemaColumnDeclarationException
      */
     public function __construct(
         string $name,

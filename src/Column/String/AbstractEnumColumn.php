@@ -3,7 +3,7 @@
 /**
  * Php Sql Schema
  *
- * MIT License
+ * NOTICE OF LICENSE
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,17 +31,61 @@
 
 declare(strict_types=1);
 
-namespace BronOS\PhpSqlSchema\Exception;
+namespace BronOS\PhpSqlSchema\Column\String;
 
+
+use BronOS\PhpSqlSchema\Column\Attribute\OptionsColumnAttributeTrait;
+use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
 
 /**
- * Php Sql Schema exception.
+ * Abstract ENUM SQL column representation.
  *
  * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-class SQLException extends \Exception
+abstract class AbstractEnumColumn extends AbstractStringColumn
 {
+    use OptionsColumnAttributeTrait {
+        OptionsColumnAttributeTrait::__construct as __optionsConstruct;
+    }
+
+    /**
+     * IntColumn constructor.
+     *
+     * @param string      $name
+     * @param array       $options
+     * @param bool        $isNullable
+     * @param string|null $default
+     * @param string|null $charset
+     * @param string|null $collate
+     * @param string|null $comment
+     *
+     * @throws PhpSqlSchemaColumnDeclarationException
+     */
+    public function __construct(
+        string $name,
+        array $options,
+        bool $isNullable = false,
+        ?string $default = null,
+        ?string $charset = null,
+        ?string $collate = null,
+        ?string $comment = null
+    ) {
+        parent::__construct(
+            $name,
+            $isNullable,
+            $default,
+            $charset,
+            $collate,
+            $comment
+        );
+
+        try {
+            $this->__optionsConstruct(...$options);
+        } catch (\Throwable $e) {
+            throw new PhpSqlSchemaColumnDeclarationException("Incorrect options list", $e->getCode(), $e);
+        }
+    }
 }

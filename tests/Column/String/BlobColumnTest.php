@@ -13,6 +13,7 @@ class BlobColumnTest extends TestCase
         $column = new BlobColumn(
             'test',
             true,
+            true,
             'cp1251',
             'cp1251_ukrainian_ci',
             'Test blob'
@@ -21,6 +22,7 @@ class BlobColumnTest extends TestCase
         $this->assertEquals('BLOB', $column->getType());
         $this->assertEquals('test', $column->getName());
         $this->assertTrue($column->isNullable());
+        $this->assertTrue($column->isDefaultNull());
         $this->assertEquals('cp1251', $column->getCharset());
         $this->assertEquals('cp1251_ukrainian_ci', $column->getCollate());
         $this->assertEquals('Test blob', $column->getComment());
