@@ -31,29 +31,24 @@
 
 declare(strict_types=1);
 
-namespace BronOS\PhpSqlSchema\Column\String;
+namespace BronOS\PhpSqlSchema\Column\DateTime;
 
 
 /**
- * ENUM SQL column representation.
+ * TIMESTAMP SQL column representation.
  *
- * An ENUM is a string object with a value chosen from a list of permitted values
- * that are enumerated explicitly in the column specification at table creation time.
+ * A timestamp. TIMESTAMP values are stored as the number of seconds since
+ * the Unix epoch ('1970-01-01 00:00:00' UTC). Format: YYYY-MM-DD hh:mm:ss.
+ * The supported range is from '1970-01-01 00:00:01' UTC to '2038-01-09 03:14:07' UTC.
+ * Automatic initialization and updating to the current date and time
+ * can be specified using DEFAULT CURRENT_TIMESTAMP and ON UPDATE CURRENT_TIMESTAMP in the column definition
  *
  * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-class EnumColumn extends AbstractEnumColumn implements EnumColumnInterface
+interface TimestampColumnInterface extends BaseDateTimeColumnInterface
 {
-    /**
-     * Returns string representation of the SQL column type.
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return self::SQL_TYPE;
-    }
+    public const SQL_TYPE = 'TIMESTAMP';
 }

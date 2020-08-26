@@ -31,29 +31,21 @@
 
 declare(strict_types=1);
 
-namespace BronOS\PhpSqlSchema\Column\String;
+namespace BronOS\PhpSqlSchema\Column\DateTime;
 
+
+use BronOS\PhpSqlSchema\Column\Attribute\OnUpdateTimestampColumnAttributeInterface;
 
 /**
- * ENUM SQL column representation.
- *
- * An ENUM is a string object with a value chosen from a list of permitted values
- * that are enumerated explicitly in the column specification at table creation time.
+ * Base datetime SQL column interface.
  *
  * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-class EnumColumn extends AbstractEnumColumn implements EnumColumnInterface
+interface BaseDateTimeColumnInterface
+    extends BaseDateColumnInterface,
+            OnUpdateTimestampColumnAttributeInterface
 {
-    /**
-     * Returns string representation of the SQL column type.
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return self::SQL_TYPE;
-    }
 }

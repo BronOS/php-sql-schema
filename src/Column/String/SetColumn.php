@@ -34,8 +34,6 @@ declare(strict_types=1);
 namespace BronOS\PhpSqlSchema\Column\String;
 
 
-use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
-
 /**
  * SET SQL column representation.
  *

@@ -4,7 +4,6 @@ namespace BronOS\PhpSqlSchema\Tests\Column\String;
 
 
 use BronOS\PhpSqlSchema\Column\String\MediumTextColumn;
-use BronOS\PhpSqlSchema\Column\String\TinyTextColumn;
 use PHPUnit\Framework\TestCase;
 
 class MediumTextColumnTest extends TestCase

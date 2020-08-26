@@ -31,29 +31,20 @@
 
 declare(strict_types=1);
 
-namespace BronOS\PhpSqlSchema\Column\String;
+namespace BronOS\PhpSqlSchema\Column\DateTime;
 
 
 /**
- * ENUM SQL column representation.
+ * TIME SQL column representation.
  *
- * An ENUM is a string object with a value chosen from a list of permitted values
- * that are enumerated explicitly in the column specification at table creation time.
+ * A time. Format: hh:mm:ss. The supported range is from '-838:59:59' to '838:59:59'
  *
  * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-class EnumColumn extends AbstractEnumColumn implements EnumColumnInterface
+interface TimeColumnInterface extends BaseDateColumnInterface
 {
-    /**
-     * Returns string representation of the SQL column type.
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return self::SQL_TYPE;
-    }
+    public const SQL_TYPE = 'TIME';
 }

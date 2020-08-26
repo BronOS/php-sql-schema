@@ -31,29 +31,54 @@
 
 declare(strict_types=1);
 
-namespace BronOS\PhpSqlSchema\Column\String;
+namespace BronOS\PhpSqlSchema\Column\DateTime;
 
+
+use BronOS\PhpSqlSchema\Column\Attribute\OnUpdateTimestampColumnAttributeTrait;
+use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
 
 /**
- * ENUM SQL column representation.
- *
- * An ENUM is a string object with a value chosen from a list of permitted values
- * that are enumerated explicitly in the column specification at table creation time.
+ * Abstract datetime SQL column representation.
  *
  * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-class EnumColumn extends AbstractEnumColumn implements EnumColumnInterface
+abstract class AbstractDateTimeColumn extends AbstractDateColumn implements BaseDateTimeColumnInterface
 {
+    use OnUpdateTimestampColumnAttributeTrait {
+        OnUpdateTimestampColumnAttributeTrait::__construct as onUpdateTimestampConstruct;
+    }
+
     /**
-     * Returns string representation of the SQL column type.
+     * AbstractSQLColumn constructor.
      *
-     * @return string
+     * @param string      $name
+     * @param bool        $isDefaultTimestamp
+     * @param bool        $isOnUpdateTimestamp
+     * @param bool        $isNullable
+     * @param string|null $default
+     * @param string|null $comment
+     *
+     * @throws PhpSqlSchemaColumnDeclarationException
      */
-    public function getType(): string
-    {
-        return self::SQL_TYPE;
+    public function __construct(
+        string $name,
+        bool $isDefaultTimestamp = false,
+        bool $isOnUpdateTimestamp = false,
+        bool $isNullable = false,
+        ?string $default = null,
+        ?string $comment = null
+    ) {
+        parent::__construct(
+            $name,
+            $isDefaultTimestamp,
+            $isNullable,
+            $default,
+            $comment
+        );
+
+        $this->onUpdateTimestampConstruct($isOnUpdateTimestamp);
     }
 }

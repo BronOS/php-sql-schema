@@ -31,29 +31,47 @@
 
 declare(strict_types=1);
 
-namespace BronOS\PhpSqlSchema\Column\String;
+namespace BronOS\PhpSqlSchema\Column\DateTime;
 
+
+use BronOS\PhpSqlSchema\Column\AbstractColumn;
+use BronOS\PhpSqlSchema\Column\Attribute\DefaultTimestampColumnAttributeTrait;
+use BronOS\PhpSqlSchema\Exception\PhpSqlSchemaColumnDeclarationException;
 
 /**
- * ENUM SQL column representation.
- *
- * An ENUM is a string object with a value chosen from a list of permitted values
- * that are enumerated explicitly in the column specification at table creation time.
+ * Abstract date/time/year SQL column representation.
  *
  * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-class EnumColumn extends AbstractEnumColumn implements EnumColumnInterface
+abstract class AbstractDateColumn extends AbstractColumn implements BaseDateColumnInterface
 {
+    use DefaultTimestampColumnAttributeTrait {
+        DefaultTimestampColumnAttributeTrait::__construct as defaultTimestampConstruct;
+    }
+
     /**
-     * Returns string representation of the SQL column type.
+     * AbstractSQLColumn constructor.
      *
-     * @return string
+     * @param string      $name
+     * @param bool        $isDefaultTimestamp
+     * @param bool        $isNullable
+     * @param string|null $default
+     * @param string|null $comment
+     *
+     * @throws PhpSqlSchemaColumnDeclarationException
      */
-    public function getType(): string
-    {
-        return self::SQL_TYPE;
+    public function __construct(
+        string $name,
+        bool $isDefaultTimestamp = false,
+        bool $isNullable = false,
+        ?string $default = null,
+        ?string $comment = null
+    ) {
+        parent::__construct($name, $isNullable, $default, $comment);
+
+        $this->defaultTimestampConstruct($isDefaultTimestamp);
     }
 }

@@ -31,29 +31,21 @@
 
 declare(strict_types=1);
 
-namespace BronOS\PhpSqlSchema\Column\String;
+namespace BronOS\PhpSqlSchema\Column\DateTime;
 
 
 /**
- * ENUM SQL column representation.
+ * YEAR SQL column representation.
  *
- * An ENUM is a string object with a value chosen from a list of permitted values
- * that are enumerated explicitly in the column specification at table creation time.
+ * A year in four-digit format. Values allowed in four-digit format: 1901 to 2155, and 0000.
+ * MySQL 8.0 does not support year in two-digit format.
  *
  * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-class EnumColumn extends AbstractEnumColumn implements EnumColumnInterface
+interface YearColumnInterface extends BaseDateColumnInterface
 {
-    /**
-     * Returns string representation of the SQL column type.
-     *
-     * @return string
-     */
-    public function getType(): string
-    {
-        return self::SQL_TYPE;
-    }
+    public const SQL_TYPE = 'YEAR';
 }
