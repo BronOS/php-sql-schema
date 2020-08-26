@@ -3,7 +3,7 @@
 /**
  * Sql
  *
- * NOTICE OF LICENSE
+ * MIT License
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,63 +31,64 @@
 
 declare(strict_types=1);
 
-namespace BronOS\PhpSqlSchema\Column\Numeric;
+namespace BronOS\PhpSqlSchema\Column\Bool;
 
 
-use BronOS\PhpSqlSchema\Column\Attribute\AutoincrementColumnAttributeTrait;
-use BronOS\PhpSqlSchema\Column\Attribute\SizeColumnAttributeTrait;
-use BronOS\PhpSqlSchema\Exception\SQLColumnDeclarationException;
+use BronOS\PhpSqlSchema\Column\AbstractColumn;
 
 /**
- * Abstract integer SQL column representation.
+ * BOOL SQL column representation.
+ *
+ * MySQL does not have built-in Boolean type. However, it uses TINYINT(1) instead.
+ * To make it more convenient, MySQL provides BOOLEAN or BOOL as the synonym of TINYINT(1).
+ *
+ * In MySQL, zero is considered as false, and non-zero value is considered as true.
+ * To use Boolean literals, you use the constants TRUE and FALSE that evaluate to 1 and 0 respectively.
+ *
+ * See the following example:
+ * SELECT true, false, TRUE, FALSE, True, False;
+ * -- 1 0 1 0 1 0
  *
  * @package   bronos\php-sql
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-abstract class AbstractIntColumn extends AbstractNumericColumn
+class BoolColumn extends AbstractColumn implements BoolColumnInterface
 {
-    use SizeColumnAttributeTrait {
-        SizeColumnAttributeTrait::__construct as __sizeConstruct;
-    }
-
-    use AutoincrementColumnAttributeTrait {
-        AutoincrementColumnAttributeTrait::__construct as __autoincrementConstruct;
-    }
-
     /**
-     * @param string   $name
-     * @param int      $size
-     * @param bool     $isUnsigned
-     * @param bool     $isAutoincrement
-     * @param bool     $isNullable
-     * @param int|null $default
-     * @param bool     $isZerofill
-     * @param string   $comment
+     * AbstractSQLColumn constructor.
      *
-     * @throws SQLColumnDeclarationException
+     * @param string    $name
+     * @param bool      $isNullable
+     * @param bool|null $default
+     * @param string    $comment
      */
     public function __construct(
         string $name,
-        int $size,
-        bool $isUnsigned = false,
-        bool $isAutoincrement = false,
         bool $isNullable = false,
-        ?int $default = null,
-        bool $isZerofill = false,
+        ?bool $default = null,
         string $comment = ''
     ) {
+        if (!is_null($default)) {
+            $default = $default ? '1' : '0';
+        }
+
         parent::__construct(
             $name,
-            $isUnsigned,
             $isNullable,
-            is_null($default) ? null : (string)$default,
-            $isZerofill,
+            $default,
             $comment
         );
+    }
 
-        $this->__sizeConstruct($size);
-        $this->__autoincrementConstruct($isAutoincrement);
+    /**
+     * Returns string representation of the SQL column type.
+     *
+     * @return string
+     */
+    public function getType(): string
+    {
+        return self::SQL_TYPE;
     }
 }

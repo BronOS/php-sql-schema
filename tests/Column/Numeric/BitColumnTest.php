@@ -4,8 +4,6 @@ namespace BronOS\PhpSqlSchema\Tests\Column\Numeric;
 
 
 use BronOS\PhpSqlSchema\Column\Numeric\BitColumn;
-use BronOS\PhpSqlSchema\Column\Numeric\IntColumn;
-use BronOS\PhpSqlSchema\Exception\SQLColumnDeclarationException;
 use PHPUnit\Framework\TestCase;
 
 class BitColumnTest extends TestCase
