@@ -16,29 +16,13 @@ class SQLTableSchemaTest extends TestCase
 {
     public function test__construct()
     {
-        $table = new SQLTableSchema(
-            'users',
-            [
-                new IntColumn(
-                    'id',
-                    11,
-                    true,
-                    true
-                ),
-                new VarCharColumn(
-                    'nickname',
-                    10,
-                )
-            ],
-            [
-                new PrimaryKey(
-                    ['id']
-                ),
-                new UniqueKey(
-                    ['nickname']
-                )
-            ]
-        );
+        $table = new SQLTableSchema('users', [
+            new IntColumn('id', 11, true, true),
+            new VarCharColumn('nickname', 10),
+        ], [
+            new PrimaryKey(['id']),
+            new UniqueKey(['nickname']),
+        ]);
 
         $this->assertEquals('users', $table->getName());
         $this->assertEquals(2, count($table->getColumns()));

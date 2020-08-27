@@ -1,2 +1,2 @@
-# php-sql
-PHP SQL database layer
+# php-sql-schema
+PHP SQL Schema
