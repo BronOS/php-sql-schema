@@ -38,9 +38,13 @@ use BronOS\PhpSqlSchema\Column\ColumnInterface;
 use BronOS\PhpSqlSchema\Exception\ColumnNotFoundException;
 use BronOS\PhpSqlSchema\Exception\DuplicateColumnException;
 use BronOS\PhpSqlSchema\Exception\DuplicateIndexException;
+use BronOS\PhpSqlSchema\Exception\DuplicateIndexFieldException;
+use BronOS\PhpSqlSchema\Exception\DuplicateRelationException;
 use BronOS\PhpSqlSchema\Exception\IndexNotFoundException;
+use BronOS\PhpSqlSchema\Exception\RelationNotFoundException;
 use BronOS\PhpSqlSchema\Exception\SQLTableSchemaDeclarationException;
 use BronOS\PhpSqlSchema\Index\IndexInterface;
+use BronOS\PhpSqlSchema\Relation\ForeignKeyInterface;
 
 /**
  * PHP representation of SQL table schema.
@@ -55,6 +59,7 @@ class SQLTableSchema implements SQLTableSchemaInterface
     private string $name;
     private array $columns;
     private array $indexes;
+    private array $relations;
     private string $engine;
     private string $defaultCharset;
     private ?string $collate;
@@ -62,21 +67,24 @@ class SQLTableSchema implements SQLTableSchemaInterface
     /**
      * SQLTableSchema constructor.
      *
-     * @param string $name
-     * @param array $columns
-     * @param array $indexes
-     * @param string $engine
-     * @param string $defaultCharset
+     * @param string      $name
+     * @param array       $columns
+     * @param array       $indexes
+     * @param array       $relations
+     * @param string      $engine
+     * @param string      $defaultCharset
      * @param string|null $collate
      *
-     * @throws SQLTableSchemaDeclarationException
      * @throws DuplicateColumnException
      * @throws DuplicateIndexException
+     * @throws DuplicateRelationException
+     * @throws SQLTableSchemaDeclarationException
      */
     public function __construct(
         string $name,
         array $columns = [],
         array $indexes = [],
+        array $relations = [],
         string $engine = 'InnoDB',
         string $defaultCharset = 'utf8mb4',
         ?string $collate = null
@@ -97,6 +105,14 @@ class SQLTableSchema implements SQLTableSchemaInterface
             throw $e;
         } catch (\Throwable $e) {
             throw new SQLTableSchemaDeclarationException('Incorrect index type', $e->getCode(), $e);
+        }
+
+        try {
+            $this->setRelations(...$relations);
+        } catch (DuplicateRelationException $e) {
+            throw $e;
+        } catch (\Throwable $e) {
+            throw new SQLTableSchemaDeclarationException('Incorrect relation type', $e->getCode(), $e);
         }
 
         $this->engine = $engine;
@@ -147,6 +163,22 @@ class SQLTableSchema implements SQLTableSchemaInterface
             }
 
             $this->indexes[$index->getName()] = $index;
+        }
+    }
+
+    /**
+     * @param ForeignKeyInterface[] $relations
+     *
+     * @throws DuplicateRelationException
+     */
+    private function setRelations(ForeignKeyInterface ...$relations): void
+    {
+        foreach ($relations as $relation) {
+            if (isset($this->relations[$relation->getName()])) {
+                throw new DuplicateRelationException('Duplicate relation');
+            }
+
+            $this->relations[$relation->getName()] = $relation;
         }
     }
 
@@ -214,6 +246,34 @@ class SQLTableSchema implements SQLTableSchemaInterface
         }
 
         return $this->indexes[$name];
+    }
+
+    /**
+     * Returns key~>value map of of table relations, where key is a foreign key name and value is a foreign key object.
+     *
+     * @return ForeignKeyInterface[]
+     */
+    public function getRelations(): array
+    {
+        return $this->relations;
+    }
+
+    /**
+     * Returns foreign key by name if exists or throws RelationNotFoundException otherwise.
+     *
+     * @param string $name
+     *
+     * @return ForeignKeyInterface
+     *
+     * @throws RelationNotFoundException
+     */
+    public function getRelation(string $name): ForeignKeyInterface
+    {
+        if (!isset($this->relations[$name])) {
+            throw new RelationNotFoundException('Relation not found');
+        }
+
+        return $this->relations[$name];
     }
 
     /**

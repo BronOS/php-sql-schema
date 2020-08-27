@@ -37,7 +37,9 @@ namespace BronOS\PhpSqlSchema;
 use BronOS\PhpSqlSchema\Column\ColumnInterface;
 use BronOS\PhpSqlSchema\Exception\ColumnNotFoundException;
 use BronOS\PhpSqlSchema\Exception\IndexNotFoundException;
+use BronOS\PhpSqlSchema\Exception\RelationNotFoundException;
 use BronOS\PhpSqlSchema\Index\IndexInterface;
+use BronOS\PhpSqlSchema\Relation\ForeignKeyInterface;
 
 /**
  * PHP representation of SQL table schema.
@@ -91,6 +93,24 @@ interface SQLTableSchemaInterface
      * @throws IndexNotFoundException
      */
     public function getIndex(string $name): IndexInterface;
+
+    /**
+     * Returns key~>value map of of table relations, where key is a foreign key name and value is a foreign key object.
+     *
+     * @return ForeignKeyInterface[]
+     */
+    public function getRelations(): array;
+
+    /**
+     * Returns foreign key by name if exists or throws RelationNotFoundException otherwise.
+     *
+     * @param string $name
+     *
+     * @return ForeignKeyInterface
+     *
+     * @throws RelationNotFoundException
+     */
+    public function getRelation(string $name): ForeignKeyInterface;
 
     /**
      * Returns engine type.
