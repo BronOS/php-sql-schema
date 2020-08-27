@@ -9,7 +9,7 @@
 >
     <testsuites>
         <testsuite name="default">
-            <directory suffix="Test.php" phpVersion="7.1">tests/</directory>
+            <directory suffix="Test.php" phpVersion="7.4">tests/</directory>
         </testsuite>
     </testsuites>
 </phpunit>
