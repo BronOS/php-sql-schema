@@ -38,7 +38,6 @@ use BronOS\PhpSqlSchema\Column\ColumnInterface;
 use BronOS\PhpSqlSchema\Exception\ColumnNotFoundException;
 use BronOS\PhpSqlSchema\Exception\DuplicateColumnException;
 use BronOS\PhpSqlSchema\Exception\DuplicateIndexException;
-use BronOS\PhpSqlSchema\Exception\DuplicateIndexFieldException;
 use BronOS\PhpSqlSchema\Exception\DuplicateRelationException;
 use BronOS\PhpSqlSchema\Exception\IndexNotFoundException;
 use BronOS\PhpSqlSchema\Exception\RelationNotFoundException;
