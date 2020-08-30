@@ -48,4 +48,11 @@ namespace BronOS\PhpSqlSchema\Column\String;
 interface SetColumnInterface extends BaseEnumColumnInterface
 {
     public const SQL_TYPE = 'SET';
+
+    /**
+     * Returns default as list if set or NULL otherwise.
+     *
+     * @return array|null
+     */
+    public function getDefaultList(): ?array;
 }

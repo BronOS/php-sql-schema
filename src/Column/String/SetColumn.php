@@ -56,4 +56,18 @@ class SetColumn extends AbstractEnumColumn implements SetColumnInterface
     {
         return self::SQL_TYPE;
     }
+
+    /**
+     * Returns default as list if set or NULL otherwise.
+     *
+     * @return array|null
+     */
+    public function getDefaultList(): ?array
+    {
+        if ($this->isDefaultNull()) {
+            return null;
+        }
+
+        return array_map('trim', explode(',', $this->getDefault()));
+    }
 }
