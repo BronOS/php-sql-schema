@@ -34,6 +34,9 @@ declare(strict_types=1);
 namespace BronOS\PhpSqlSchema\Column\Numeric;
 
 
+use BronOS\PhpSqlSchema\Column\Attribute\FloatSizeColumnAttributeTrait;
+use BronOS\PhpSqlSchema\Exception\ColumnDeclarationException;
+
 /**
  * A representation of the FLOAT SQL column. Floating-Point Type (Approximate Value)
  *
@@ -64,8 +67,48 @@ namespace BronOS\PhpSqlSchema\Column\Numeric;
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-class FloatColumn extends AbstractDecimalColumn implements FloatColumnInterface
+class FloatColumn extends AbstractNumericColumn implements FloatColumnInterface
 {
+    use FloatSizeColumnAttributeTrait {
+        FloatSizeColumnAttributeTrait::__construct as __floatSizeConstruct;
+    }
+
+    /**
+     * AbstractDecimalColumn constructor.
+     *
+     * @param string      $name
+     * @param int|null    $precision
+     * @param int|null    $scale
+     * @param bool        $isUnsigned
+     * @param bool        $isNullable
+     * @param string|null $default
+     * @param bool        $isZerofill
+     * @param string|null $comment
+     *
+     * @throws ColumnDeclarationException
+     */
+    public function __construct(
+        string $name,
+        ?int $precision = null,
+        ?int $scale = null,
+        bool $isUnsigned = false,
+        bool $isNullable = false,
+        ?string $default = null,
+        bool $isZerofill = false,
+        ?string $comment = null
+    ) {
+        parent::__construct(
+            $name,
+            $isUnsigned,
+            $isNullable,
+            $default,
+            $isZerofill,
+            $comment
+        );
+
+        $this->__floatSizeConstruct($precision, $scale);
+    }
+
     /**
      * Returns string representation of the SQL column type.
      *

@@ -31,4 +31,28 @@ class FloatColumnTest extends TestCase
         $this->assertFalse($column->isZerofill());
         $this->assertEquals('Float ID', $column->getComment());
     }
+
+    public function testNullableSize()
+    {
+        $column = new FloatColumn(
+            'id',
+            null,
+            null,
+            true,
+            false,
+            '10.5',
+            false,
+            "Float ID"
+        );
+
+        $this->assertEquals('FLOAT', $column->getType());
+        $this->assertEquals('id', $column->getName());
+        $this->assertNull($column->getPrecision());
+        $this->assertNull($column->getScale());
+        $this->assertTrue($column->isUnsigned());
+        $this->assertFalse($column->isNullable());
+        $this->assertEquals('10.5', $column->getDefault());
+        $this->assertFalse($column->isZerofill());
+        $this->assertEquals('Float ID', $column->getComment());
+    }
 }
