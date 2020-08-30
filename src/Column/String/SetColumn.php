@@ -64,7 +64,7 @@ class SetColumn extends AbstractEnumColumn implements SetColumnInterface
      */
     public function getDefaultList(): ?array
     {
-        if ($this->isDefaultNull()) {
+        if ($this->isDefaultNull() || is_null($this->getDefault())) {
             return null;
         }
 
