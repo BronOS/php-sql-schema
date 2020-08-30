@@ -34,11 +34,6 @@ declare(strict_types=1);
 namespace BronOS\PhpSqlSchema\Column\Numeric;
 
 
-use BronOS\PhpSqlSchema\Column\Attribute\FloatSizeColumnAttributeInterface;
-use BronOS\PhpSqlSchema\Column\Attribute\UnsignedColumnAttributeInterface;
-use BronOS\PhpSqlSchema\Column\Attribute\ZerofillColumnAttributeInterface;
-use BronOS\PhpSqlSchema\Column\ColumnInterface;
-
 /**
  * A representation of the FLOAT SQL column. Floating-Point Type (Approximate Value)
  *
@@ -70,10 +65,7 @@ use BronOS\PhpSqlSchema\Column\ColumnInterface;
  * @license   https://opensource.org/licenses/MIT
  */
 interface FloatColumnInterface
-    extends ColumnInterface,
-            UnsignedColumnAttributeInterface,
-            FloatSizeColumnAttributeInterface,
-            ZerofillColumnAttributeInterface
+    extends BaseFloatColumnInterface
 {
     public const SQL_TYPE = 'FLOAT';
 }

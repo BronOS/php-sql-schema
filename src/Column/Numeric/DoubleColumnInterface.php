@@ -64,7 +64,7 @@ namespace BronOS\PhpSqlSchema\Column\Numeric;
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-interface DoubleColumnInterface extends BaseDecimalColumnInterface
+interface DoubleColumnInterface extends BaseFloatColumnInterface
 {
     public const SQL_TYPE = 'DOUBLE';
 }

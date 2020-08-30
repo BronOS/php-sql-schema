@@ -64,7 +64,7 @@ namespace BronOS\PhpSqlSchema\Column\Numeric;
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-class DoubleColumn extends AbstractDecimalColumn implements DoubleColumnInterface
+class DoubleColumn extends AbstractFloatColumn implements DoubleColumnInterface
 {
     /**
      * Returns string representation of the SQL column type.
