@@ -50,20 +50,18 @@ abstract class AbstractIndex implements IndexInterface
 {
     private array $fields = [];
     private string $name;
-    private ?int $size = null;
 
     /**
      * AbstractIndex constructor.
      *
      * @param array       $fields
      * @param string|null $name
-     * @param int|null    $size
      *
      * @throws DuplicateIndexFieldException
      * @throws EmptyIndexFieldListException
      * @throws InvalidIndexFieldTypeException
      */
-    public function __construct(array $fields, ?string $name = null, ?int $size = null)
+    public function __construct(array $fields, ?string $name = null)
     {
         try {
             $this->setFields(...$fields);
@@ -74,7 +72,6 @@ abstract class AbstractIndex implements IndexInterface
         }
 
         $this->name = $this->generateName($fields, $name);
-        $this->size = $size;
     }
 
     /**
@@ -134,15 +131,5 @@ abstract class AbstractIndex implements IndexInterface
     public function getFields(): array
     {
         return $this->fields;
-    }
-
-    /**
-     * Returns key block size if set and null otherwise.
-     *
-     * @return int|null
-     */
-    public function getSize(): ?int
-    {
-        return $this->size;
     }
 }

@@ -12,13 +12,11 @@ class KeyTest extends TestCase
     {
         $index = new Key(
             ['test1', 'test2'],
-            't12',
-            null
+            't12'
         );
 
         $this->assertEquals('KEY', $index->getType());
         $this->assertEquals(['test1', 'test2'], $index->getFields());
         $this->assertEquals('t12', $index->getName());
-        $this->assertNull($index->getSize());
     }
 }

@@ -12,13 +12,11 @@ class UniqueKeyTest extends TestCase
     {
         $index = new UniqueKey(
             ['test1', 'test2'],
-            't12',
-            22
+            't12'
         );
 
         $this->assertEquals('UNIQUE KEY', $index->getType());
         $this->assertEquals(['test1', 'test2'], $index->getFields());
         $this->assertEquals('t12', $index->getName());
-        $this->assertEquals(22, $index->getSize());
     }
 }

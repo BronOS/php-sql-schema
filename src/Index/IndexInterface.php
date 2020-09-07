@@ -64,11 +64,4 @@ interface IndexInterface
      * @return string[]
      */
     public function getFields(): array;
-
-    /**
-     * Returns key block size if set and null otherwise.
-     *
-     * @return int|null
-     */
-    public function getSize(): ?int;
 }
