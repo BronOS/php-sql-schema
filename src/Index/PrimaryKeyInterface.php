@@ -45,4 +45,5 @@ namespace BronOS\PhpSqlSchema\Index;
 interface PrimaryKeyInterface extends IndexInterface
 {
     public const SQL_TYPE = 'PRIMARY KEY';
+    public const INDEX_NAME = 'PRIMARY';
 }

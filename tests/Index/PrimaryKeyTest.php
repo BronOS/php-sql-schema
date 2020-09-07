@@ -16,6 +16,6 @@ class PrimaryKeyTest extends TestCase
 
         $this->assertEquals('PRIMARY KEY', $index->getType());
         $this->assertEquals(['test1', 'test2'], $index->getFields());
-        $this->assertEquals('', $index->getName());
+        $this->assertEquals('PRIMARY', $index->getName());
     }
 }
