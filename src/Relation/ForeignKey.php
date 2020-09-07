@@ -96,7 +96,7 @@ class ForeignKey implements ForeignKeyInterface
      */
     private function generateName(?string $name, string $sourceField, string $targetTable, string $targetField): string
     {
-        if (!isNull($name)) {
+        if (!is_null($name)) {
             return $name;
         }
 
