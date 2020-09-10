@@ -59,7 +59,7 @@ class PrimaryKey extends AbstractIndex implements PrimaryKeyInterface
      */
     public function __construct(array $fields)
     {
-        parent::__construct($fields, self::INDEX_NAME);
+        parent::__construct($fields, self::PRIMARY_INDEX_NAME);
     }
 
     /**

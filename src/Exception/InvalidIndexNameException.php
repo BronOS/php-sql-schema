@@ -31,18 +31,17 @@
 
 declare(strict_types=1);
 
-namespace BronOS\PhpSqlSchema\Index;
+namespace BronOS\PhpSqlSchema\Exception;
 
 
 /**
- * PHP representation of SQL table primary key.
+ * Php Sql Schema invalid index name.
  *
  * @package   bronos\php-sql-schema
  * @author    Oleg Bronzov <oleg.bronzov@gmail.com>
  * @copyright 2020
  * @license   https://opensource.org/licenses/MIT
  */
-interface PrimaryKeyInterface extends IndexInterface
+class InvalidIndexNameException extends PhpSqlSchemaException
 {
-    public const SQL_TYPE = 'PRIMARY KEY';
 }

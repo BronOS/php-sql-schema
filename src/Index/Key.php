@@ -34,6 +34,11 @@ declare(strict_types=1);
 namespace BronOS\PhpSqlSchema\Index;
 
 
+use BronOS\PhpSqlSchema\Exception\DuplicateIndexFieldException;
+use BronOS\PhpSqlSchema\Exception\EmptyIndexFieldListException;
+use BronOS\PhpSqlSchema\Exception\InvalidIndexFieldTypeException;
+use BronOS\PhpSqlSchema\Exception\InvalidIndexNameException;
+
 /**
  * PHP representation of SQL table key/index.
  *
@@ -44,6 +49,26 @@ namespace BronOS\PhpSqlSchema\Index;
  */
 class Key extends AbstractIndex implements KeyInterface
 {
+    /**
+     * AbstractIndex constructor.
+     *
+     * @param array       $fields
+     * @param string|null $name
+     *
+     * @throws DuplicateIndexFieldException
+     * @throws EmptyIndexFieldListException
+     * @throws InvalidIndexFieldTypeException
+     * @throws InvalidIndexNameException
+     */
+    public function __construct(array $fields, ?string $name = null)
+    {
+        if ($name == self::PRIMARY_INDEX_NAME) {
+            throw new InvalidIndexNameException('Invalid index name ' . self::PRIMARY_INDEX_NAME);
+        }
+
+        parent::__construct($fields, $name);
+    }
+
     /**
      * Returns string representation of SQL key type.
      *

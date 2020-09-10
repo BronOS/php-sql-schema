@@ -3,6 +3,7 @@
 namespace BronOS\PhpSqlSchema\Tests\Index;
 
 
+use BronOS\PhpSqlSchema\Exception\InvalidIndexNameException;
 use BronOS\PhpSqlSchema\Index\Key;
 use PHPUnit\Framework\TestCase;
 
@@ -18,5 +19,14 @@ class KeyTest extends TestCase
         $this->assertEquals('KEY', $index->getType());
         $this->assertEquals(['test1', 'test2'], $index->getFields());
         $this->assertEquals('t12', $index->getName());
+    }
+
+    public function testPrimary()
+    {
+        $this->expectException(InvalidIndexNameException::class);
+        $index = new Key(
+            ['test1', 'test2'],
+            'PRIMARY'
+        );
     }
 }

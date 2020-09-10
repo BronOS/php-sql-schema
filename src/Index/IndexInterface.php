@@ -44,6 +44,8 @@ namespace BronOS\PhpSqlSchema\Index;
  */
 interface IndexInterface
 {
+    public const PRIMARY_INDEX_NAME = 'PRIMARY';
+
     /**
      * Returns string representation of SQL key type.
      *
