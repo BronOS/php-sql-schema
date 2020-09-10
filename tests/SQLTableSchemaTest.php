@@ -9,6 +9,7 @@ use BronOS\PhpSqlSchema\Column\String\VarCharColumn;
 use BronOS\PhpSqlSchema\Index\IndexInterface;
 use BronOS\PhpSqlSchema\Index\PrimaryKey;
 use BronOS\PhpSqlSchema\Index\UniqueKey;
+use BronOS\PhpSqlSchema\Relation\ForeignKey;
 use BronOS\PhpSqlSchema\SQLTableSchema;
 use PHPUnit\Framework\TestCase;
 
@@ -18,15 +19,19 @@ class SQLTableSchemaTest extends TestCase
     {
         $table = new SQLTableSchema('users', [
             new IntColumn('id', 11, true, true),
+            new IntColumn('blog_id', 11, true),
             new VarCharColumn('nickname', 10),
         ], [
             new PrimaryKey(['id']),
             new UniqueKey(['nickname']),
+        ], [
+            new ForeignKey('blog_id', 'post', 'id')
         ]);
 
         $this->assertEquals('users', $table->getName());
-        $this->assertEquals(2, count($table->getColumns()));
+        $this->assertEquals(3, count($table->getColumns()));
         $this->assertEquals(2, count($table->getIndexes()));
+        $this->assertEquals(1, count($table->getRelations()));
 
         $idColumn = $table->getColumn('id');
 
