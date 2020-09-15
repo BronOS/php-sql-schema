@@ -56,9 +56,9 @@ use BronOS\PhpSqlSchema\Relation\ForeignKeyInterface;
 class SQLTableSchema implements SQLTableSchemaInterface
 {
     private string $name;
-    private array $columns;
-    private array $indexes;
-    private array $relations;
+    private array $columns = [];
+    private array $indexes = [];
+    private array $relations = [];
     private string $engine;
     private string $defaultCharset;
     private ?string $collate;
@@ -75,8 +75,6 @@ class SQLTableSchema implements SQLTableSchemaInterface
      * @param string|null $collate
      *
      * @throws DuplicateColumnException
-     * @throws DuplicateIndexException
-     * @throws DuplicateRelationException
      * @throws SQLTableSchemaDeclarationException
      */
     public function __construct(
