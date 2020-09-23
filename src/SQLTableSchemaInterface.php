@@ -113,23 +113,23 @@ interface SQLTableSchemaInterface
     public function getRelation(string $name): ForeignKeyInterface;
 
     /**
-     * Returns engine type.
+     * Returns engine name.
      *
      * @return string|null
      */
     public function getEngine(): ?string;
 
     /**
-     * Returns default charset.
+     * Returns table charset.
      *
      * @return string|null
      */
-    public function getDefaultCharset(): ?string;
+    public function getCharset(): ?string;
 
     /**
-     * Returns collate of the table if set or null otherwise.
+     * Returns table collation.
      *
      * @return string|null
      */
-    public function getCollate(): ?string;
+    public function getCollation(): ?string;
 }

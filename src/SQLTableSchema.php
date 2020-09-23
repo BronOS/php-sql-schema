@@ -60,8 +60,8 @@ class SQLTableSchema implements SQLTableSchemaInterface
     private array $indexes = [];
     private array $relations = [];
     private ?string $engine = null;
-    private ?string $defaultCharset = null;
-    private ?string $collate;
+    private ?string $charset = null;
+    private ?string $collation;
 
     /**
      * SQLTableSchema constructor.
@@ -71,8 +71,8 @@ class SQLTableSchema implements SQLTableSchemaInterface
      * @param array       $indexes
      * @param array       $relations
      * @param string|null $engine
-     * @param string|null $defaultCharset
-     * @param string|null $collate
+     * @param string|null $charset
+     * @param string|null $collation
      *
      * @throws DuplicateColumnException
      * @throws DuplicateIndexException
@@ -85,8 +85,8 @@ class SQLTableSchema implements SQLTableSchemaInterface
         array $indexes = [],
         array $relations = [],
         ?string $engine = null,
-        ?string $defaultCharset = null,
-        ?string $collate = null
+        ?string $charset = null,
+        ?string $collation = null
     ) {
         $this->setName($name);
 
@@ -115,8 +115,8 @@ class SQLTableSchema implements SQLTableSchemaInterface
         }
 
         $this->engine = $engine;
-        $this->defaultCharset = $defaultCharset;
-        $this->collate = $collate;
+        $this->charset = $charset;
+        $this->collation = $collation;
     }
 
     /**
@@ -276,7 +276,7 @@ class SQLTableSchema implements SQLTableSchemaInterface
     }
 
     /**
-     * Returns engine type.
+     * Returns engine name.
      *
      * @return string|null
      */
@@ -286,22 +286,22 @@ class SQLTableSchema implements SQLTableSchemaInterface
     }
 
     /**
-     * Returns default charset.
+     * Returns table charset.
      *
      * @return string|null
      */
-    public function getDefaultCharset(): ?string
+    public function getCharset(): ?string
     {
-        return $this->defaultCharset;
+        return $this->charset;
     }
 
     /**
-     * Returns collate of the table if set or null otherwise.
+     * Returns table collation.
      *
      * @return string|null
      */
-    public function getCollate(): ?string
+    public function getCollation(): ?string
     {
-        return $this->collate;
+        return $this->collation;
     }
 }
