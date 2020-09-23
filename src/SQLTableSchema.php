@@ -59,8 +59,8 @@ class SQLTableSchema implements SQLTableSchemaInterface
     private array $columns = [];
     private array $indexes = [];
     private array $relations = [];
-    private string $engine;
-    private string $defaultCharset;
+    private ?string $engine = null;
+    private ?string $defaultCharset = null;
     private ?string $collate;
 
     /**
@@ -70,8 +70,8 @@ class SQLTableSchema implements SQLTableSchemaInterface
      * @param array       $columns
      * @param array       $indexes
      * @param array       $relations
-     * @param string      $engine
-     * @param string      $defaultCharset
+     * @param string|null $engine
+     * @param string|null $defaultCharset
      * @param string|null $collate
      *
      * @throws DuplicateColumnException
@@ -82,8 +82,8 @@ class SQLTableSchema implements SQLTableSchemaInterface
         array $columns = [],
         array $indexes = [],
         array $relations = [],
-        string $engine = 'InnoDB',
-        string $defaultCharset = 'utf8mb4',
+        ?string $engine = null,
+        ?string $defaultCharset = null,
         ?string $collate = null
     ) {
         $this->setName($name);
@@ -276,9 +276,9 @@ class SQLTableSchema implements SQLTableSchemaInterface
     /**
      * Returns engine type.
      *
-     * @return string
+     * @return string|null
      */
-    public function getEngine(): string
+    public function getEngine(): ?string
     {
         return $this->engine;
     }
@@ -286,9 +286,9 @@ class SQLTableSchema implements SQLTableSchemaInterface
     /**
      * Returns default charset.
      *
-     * @return string
+     * @return string|null
      */
-    public function getDefaultCharset(): string
+    public function getDefaultCharset(): ?string
     {
         return $this->defaultCharset;
     }

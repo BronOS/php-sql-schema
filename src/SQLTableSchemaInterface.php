@@ -115,16 +115,16 @@ interface SQLTableSchemaInterface
     /**
      * Returns engine type.
      *
-     * @return string
+     * @return string|null
      */
-    public function getEngine(): string;
+    public function getEngine(): ?string;
 
     /**
      * Returns default charset.
      *
-     * @return string
+     * @return string|null
      */
-    public function getDefaultCharset(): string;
+    public function getDefaultCharset(): ?string;
 
     /**
      * Returns collate of the table if set or null otherwise.
