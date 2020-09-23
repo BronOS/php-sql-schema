@@ -75,6 +75,8 @@ class SQLTableSchema implements SQLTableSchemaInterface
      * @param string|null $collate
      *
      * @throws DuplicateColumnException
+     * @throws DuplicateIndexException
+     * @throws DuplicateRelationException
      * @throws SQLTableSchemaDeclarationException
      */
     public function __construct(
