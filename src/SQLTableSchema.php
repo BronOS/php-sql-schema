@@ -91,7 +91,7 @@ class SQLTableSchema implements SQLTableSchemaInterface
         $this->setName($name);
 
         try {
-            $this->setColumns(...$columns);
+            $this->setColumns(...array_values($columns));
         } catch (DuplicateColumnException $e) {
             throw $e;
         } catch (\Throwable $e) {
@@ -99,7 +99,7 @@ class SQLTableSchema implements SQLTableSchemaInterface
         }
 
         try {
-            $this->setIndexes(...$indexes);
+            $this->setIndexes(...array_values($indexes));
         } catch (DuplicateIndexException $e) {
             throw $e;
         } catch (\Throwable $e) {
@@ -107,7 +107,7 @@ class SQLTableSchema implements SQLTableSchemaInterface
         }
 
         try {
-            $this->setRelations(...$relations);
+            $this->setRelations(...array_values($relations));
         } catch (DuplicateRelationException $e) {
             throw $e;
         } catch (\Throwable $e) {

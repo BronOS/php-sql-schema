@@ -76,7 +76,7 @@ class SQLDatabaseSchema implements SQLDatabaseSchemaInterface
         $this->name = $name;
 
         try {
-            $this->setTables(...$tables);
+            $this->setTables(...array_values($tables));
         } catch (DuplicateTableException $e) {
             throw $e;
         } catch (\Throwable $e) {
