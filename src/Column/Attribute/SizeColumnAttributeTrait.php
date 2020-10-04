@@ -52,12 +52,9 @@ trait SizeColumnAttributeTrait
      * DimensionalSQLColumnTrait constructor.
      *
      * @param int $size
-     *
-     * @throws ColumnDeclarationException
      */
     public function __construct(int $size)
     {
-        $this->validateSize($size);
         $this->size = $size;
     }
 
@@ -67,22 +64,5 @@ trait SizeColumnAttributeTrait
     public function getSize(): int
     {
         return $this->size;
-    }
-
-    /**
-     * @param int $size
-     *
-     * @throws ColumnDeclarationException
-     */
-    private function validateSize(int $size): void
-    {
-        if ($size < 1 || $size > 255) {
-            throw new ColumnDeclarationException(
-                sprintf(
-                    'Invalid INT size %s. Size value must be between 1 and 255.',
-                    $size
-                )
-            );
-        }
     }
 }
