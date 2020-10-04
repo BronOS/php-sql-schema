@@ -55,9 +55,10 @@ class TimestampColumn extends AbstractDateTimeColumn implements TimestampColumnI
     /**
      * AbstractSQLColumn constructor.
      *
-     * @param string $name
-     * @param bool $isDefaultTimestamp
-     * @param bool $isOnUpdateTimestamp
+     * @param string      $name
+     * @param bool        $isNullable
+     * @param bool        $isDefaultTimestamp
+     * @param bool        $isOnUpdateTimestamp
      * @param string|null $default
      * @param string|null $comment
      *
@@ -65,12 +66,13 @@ class TimestampColumn extends AbstractDateTimeColumn implements TimestampColumnI
      */
     public function __construct(
         string $name,
+        bool $isNullable = false,
         bool $isDefaultTimestamp = false,
         bool $isOnUpdateTimestamp = false,
         ?string $default = null,
         ?string $comment = null
     ) {
-        parent::__construct($name, $isDefaultTimestamp, $isOnUpdateTimestamp, false, $default, $comment);
+        parent::__construct($name, $isDefaultTimestamp, $isOnUpdateTimestamp, $isNullable, $default, $comment);
     }
 
     /**
