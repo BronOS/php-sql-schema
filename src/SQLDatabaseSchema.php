@@ -49,7 +49,7 @@ use BronOS\PhpSqlSchema\Exception\TableNotFoundException;
 class SQLDatabaseSchema implements SQLDatabaseSchemaInterface
 {
     private string $name;
-    private array $tables;
+    private array $tables = [];
     private ?string $defaultEngine;
     private ?string $defaultCharset;
     private ?string $defaultCollation;
