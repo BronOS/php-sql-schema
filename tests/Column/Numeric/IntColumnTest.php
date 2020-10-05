@@ -34,16 +34,4 @@ class IntColumnTest extends TestCase
         $this->assertFalse($column->isZerofill());
         $this->assertEquals('Primary ID', $column->getComment());
     }
-
-    public function testOutOfRangeMin()
-    {
-        $this->expectException(ColumnDeclarationException::class);
-        new IntColumn('id', 0);
-    }
-
-    public function testOutOfRangeMax()
-    {
-        $this->expectException(ColumnDeclarationException::class);
-        new IntColumn('id', 256);
-    }
 }

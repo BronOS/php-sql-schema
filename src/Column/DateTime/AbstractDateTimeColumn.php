@@ -55,6 +55,7 @@ abstract class AbstractDateTimeColumn extends AbstractDateColumn implements Base
      * AbstractSQLColumn constructor.
      *
      * @param string      $name
+     * @param int         $size
      * @param bool        $isDefaultTimestamp
      * @param bool        $isOnUpdateTimestamp
      * @param bool        $isNullable
@@ -65,6 +66,7 @@ abstract class AbstractDateTimeColumn extends AbstractDateColumn implements Base
      */
     public function __construct(
         string $name,
+        int $size = 0,
         bool $isDefaultTimestamp = false,
         bool $isOnUpdateTimestamp = false,
         bool $isNullable = false,
@@ -73,6 +75,7 @@ abstract class AbstractDateTimeColumn extends AbstractDateColumn implements Base
     ) {
         parent::__construct(
             $name,
+            $size,
             $isDefaultTimestamp,
             $isNullable,
             $default,

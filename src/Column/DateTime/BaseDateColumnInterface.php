@@ -35,6 +35,7 @@ namespace BronOS\PhpSqlSchema\Column\DateTime;
 
 
 use BronOS\PhpSqlSchema\Column\Attribute\DefaultTimestampColumnAttributeInterface;
+use BronOS\PhpSqlSchema\Column\Attribute\SizeColumnAttributeInterface;
 use BronOS\PhpSqlSchema\Column\ColumnInterface;
 
 /**
@@ -47,6 +48,7 @@ use BronOS\PhpSqlSchema\Column\ColumnInterface;
  */
 interface BaseDateColumnInterface
     extends ColumnInterface,
-            DefaultTimestampColumnAttributeInterface
+            DefaultTimestampColumnAttributeInterface,
+            SizeColumnAttributeInterface
 {
 }

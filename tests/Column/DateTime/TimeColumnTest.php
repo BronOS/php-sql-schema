@@ -12,6 +12,7 @@ class TimeColumnTest extends TestCase
     {
         $column = new TimeColumn(
             'dt',
+            0,
             true,
             true,
             '13:08:26',

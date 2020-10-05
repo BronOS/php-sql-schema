@@ -12,6 +12,8 @@ class TimestampColumnTest extends TestCase
     {
         $column = new TimestampColumn(
             'dt',
+            0,
+            false,
             true,
             true,
             '2020-08-26 22:10:01',

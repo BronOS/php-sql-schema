@@ -36,6 +36,7 @@ namespace BronOS\PhpSqlSchema\Column\DateTime;
 
 use BronOS\PhpSqlSchema\Column\AbstractColumn;
 use BronOS\PhpSqlSchema\Column\Attribute\DefaultTimestampColumnAttributeTrait;
+use BronOS\PhpSqlSchema\Column\Attribute\SizeColumnAttributeTrait;
 use BronOS\PhpSqlSchema\Exception\ColumnDeclarationException;
 
 /**
@@ -52,10 +53,15 @@ abstract class AbstractDateColumn extends AbstractColumn implements BaseDateColu
         DefaultTimestampColumnAttributeTrait::__construct as defaultTimestampConstruct;
     }
 
+    use SizeColumnAttributeTrait {
+        SizeColumnAttributeTrait::__construct as sizeConstruct;
+    }
+
     /**
      * AbstractSQLColumn constructor.
      *
      * @param string      $name
+     * @param int         $size
      * @param bool        $isDefaultTimestamp
      * @param bool        $isNullable
      * @param string|null $default
@@ -65,6 +71,7 @@ abstract class AbstractDateColumn extends AbstractColumn implements BaseDateColu
      */
     public function __construct(
         string $name,
+        int $size = 0,
         bool $isDefaultTimestamp = false,
         bool $isNullable = false,
         ?string $default = null,
@@ -73,5 +80,6 @@ abstract class AbstractDateColumn extends AbstractColumn implements BaseDateColu
         parent::__construct($name, $isNullable, $default, $comment);
 
         $this->defaultTimestampConstruct($isDefaultTimestamp);
+        $this->sizeConstruct($size);
     }
 }

@@ -12,6 +12,7 @@ class DateColumnTest extends TestCase
     {
         $column = new DateColumn(
             'dt',
+            0,
             true,
             true,
             '2020-08-26',

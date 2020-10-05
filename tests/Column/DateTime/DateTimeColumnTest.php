@@ -12,6 +12,7 @@ class DateTimeColumnTest extends TestCase
     {
         $column = new DateTimeColumn(
             'dt',
+            0,
             true,
             true,
             true,

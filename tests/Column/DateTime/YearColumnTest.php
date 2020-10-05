@@ -12,6 +12,7 @@ class YearColumnTest extends TestCase
     {
         $column = new YearColumn(
             'dt',
+            0,
             true,
             true,
             '2020',
